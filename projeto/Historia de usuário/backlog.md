@@ -6,3 +6,6 @@
 | Como um aluno, eu quero | realizar a minha matricula | para que eu possa ver as aulas do meu curso | Giovanni Duarte | Pendente |
 | Como um aluno, eu quero | visualizar cobranças | para saber quanto terei de pagar para a universidade | Giovanni Duarte | Pendente |
 | Como um aluno, eu quero | cancelar a minha matrícula | para que eu não esteje mais matriculado no curso em que estava, e não precise mais receber cobranças | Giovanni Duarte | Pendente |
+| Como um aluno, eu quero | adicionar matérias obrigatórias ao meu cronograma acadêmico | para garantir que eu esteja inscrito nas disciplinas necessárias do meu curso | Guilherme Drumond | Pendente |
+| Como um aluno, eu quero | quero ter a opção de adicionar matérias optativas ao meu cronograma acadêmico | para explorar tópicos de interesse adicionais | Guilherme Drumond | Pendente |
+
