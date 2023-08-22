@@ -11,7 +11,7 @@ Os artefatos do projeto estão separados da seguinte forma:
 
 * `/Diagrama de Classes`
 	* **README.md**: Descrição do diagrama de classes.
- * ![Caso de uso inicial](./Imagens/UML-template.png")
+ * ![Caso de uso inicial](./Imagens/UMLRascunho.png")
 
 * `/Historia de usuário`
 	* **backlog.md**: Descrição das histórias de usuário de acordo com os casos de uso.
