@@ -1,6 +1,7 @@
 package business;
+import java.util.List;
 
-public class Disciplna implements IObrigatorio, IAtivada {
+public class Disciplina implements IObrigatorio, IAtivada {
     private List<Aluno> Alunos;
     private int maxAlunos;
     private String nome;

@@ -12,12 +12,12 @@ public class SistemaMatricula {
 
     public Disciplina matricularDisciplina(String nome, String nomeDisciplina){
 
-        return "";
+        return null;
     }
 
     public Disciplina cancelarMatricula(String nome, String nomeDisciplina){
 
-        return "";
+        return null;
     }
 
     public void confereDisciplina(){
