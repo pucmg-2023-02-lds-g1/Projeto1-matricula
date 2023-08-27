@@ -2,7 +2,7 @@ package business;
 
 import java.util.List;
 
-public class Aluno extends Usuario {
+public class Aluno extends Usuario implements ISalvavel {
     private List disciplinas;
     Aluno(String nome, String senha) {
         super(nome, senha);
@@ -25,5 +25,7 @@ public class Aluno extends Usuario {
     void visualizarCobranca(){
 
     }
+
+    public void getDados(){}
     
 }
