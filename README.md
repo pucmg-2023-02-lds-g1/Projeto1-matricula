@@ -1,5 +1,5 @@
 # pucmg-2023-02-lds-g1
-Nesse projeto temos o objetivo de aprender java ao fazer muita coisa
+Nesse projeto temos o objetivo de fazer um sistema de matrícula usando a linguagem java.
 
 ## Alunos integrantes da equipe
 
