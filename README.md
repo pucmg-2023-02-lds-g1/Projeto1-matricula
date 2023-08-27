@@ -1,5 +1,5 @@
 # pucmg-2023-02-lds-g1
-Nesse projeto temos o objetivo de fazer um sistema de matrícula usando a linguagem java.
+Nesse projeto temos o objetivo de fazer um sistema de matrícula usando a linguagem Java.
 
 ## Alunos integrantes da equipe
 
