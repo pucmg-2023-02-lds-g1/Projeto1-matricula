@@ -1,5 +1,8 @@
 package business;
-public class Secretario extends Usuario{
+public class Secretario extends Usuario implements ISalvavel{
+
+    private String nome;
+    private String senha;
     
     
     Secretario(String nome,String senha){
@@ -14,5 +17,9 @@ public class Secretario extends Usuario{
 
     void salvarDados(){
 
+    }
+
+    public String getDados(){
+        return "S;" + this.nome + ";" + this.senha;
     }
 }

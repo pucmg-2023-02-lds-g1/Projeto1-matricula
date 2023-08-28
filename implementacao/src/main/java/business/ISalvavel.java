@@ -1,5 +1,5 @@
 package business;
 
 public interface ISalvavel {
-    public void getDados();
+    public String getDados();
 }
