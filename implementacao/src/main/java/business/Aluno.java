@@ -4,6 +4,9 @@ import java.util.List;
 
 public class Aluno extends Usuario implements ISalvavel {
     private List disciplinas;
+    private String nome;
+    private String senha;
+
     Aluno(String nome, String senha) {
         super(nome, senha);
         
@@ -26,6 +29,7 @@ public class Aluno extends Usuario implements ISalvavel {
 
     }
 
-    public void getDados(){}
-    
+    public String getDados(){
+        return "A;" + this.nome + ";" + this.senha;
+    }
 }

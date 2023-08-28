@@ -9,5 +9,7 @@ public class Disciplina implements IObrigatorio, IAtivada,ISalvavel{
     private IObrigatorio obrigatoria;
 
 
-    public void getDados(){}
+    public String getDados(){
+        return "D;" + this.nome;
+    }
 }
