@@ -9,19 +9,19 @@ public class Usuario {
         setSenha(senha);
     }
 
-    private String getNome() {
+    public String getNome() {
         return this.nome;
     }
 
-    private void setNome(String nome) {
+    public void setNome(String nome) {
 
     }
 
-    private String getSenha() {
+    public String getSenha() {
         return this.senha;
     }
 
-    private void setSenha(String senha) {
+    public void setSenha(String senha) {
         
     }
 }

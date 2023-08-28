@@ -11,6 +11,7 @@ import java.util.StringTokenizer;
 public class SistemaMatricula {
     
     private String nome;
+    private Usuario usuarioAtual;
     private static final String arqUsuario = "implementacao\\src\\arquivos\\arqUsuarios.txt";
     private HashMap<String, Usuario> usuarios = new HashMap<>();
 
@@ -47,8 +48,16 @@ public class SistemaMatricula {
         return "";
     }
 
-    public void validarLogin(String nome, String senha){
-
+    public boolean validarLogin(String nome, String senha) throws Exception{
+         usuarioAtual = usuarios.get(nome);
+            if (usuarioAtual == null) {
+                throw new Exception("Login incorreto!");// Criar exceção específica 
+            }
+            if (!senha.equals(usuarioAtual.getSenha())) {
+                this.usuarioAtual = null;
+                throw new Exception("Senha incorreta!");// Criar exceção específica 
+            }
+        return true;
     }
 
     public void cadastro(){
