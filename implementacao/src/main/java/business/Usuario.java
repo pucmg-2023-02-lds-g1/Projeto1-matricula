@@ -14,7 +14,7 @@ public abstract class Usuario implements ISalvavel {
     }
 
     public void setNome(String nome) {
-
+        this.nome = nome;
     }
 
     public String getSenha() {
@@ -22,7 +22,7 @@ public abstract class Usuario implements ISalvavel {
     }
 
     public void setSenha(String senha) {
-        
+        this.senha = senha;
     }
 
     public abstract String getDados();

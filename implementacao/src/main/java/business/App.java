@@ -69,11 +69,11 @@ public class App {
             if (opcao == 1) {
                 Aluno aluno = new Aluno(nome, senha);
                 sysMat.cadastro(aluno);
-                System.out.println("Aluno cadastrado com sucesso");
+                System.out.println("Aluno cadastrado com sucesso: "+aluno.getNome());
             } else if (opcao == 2) {
                 Professor professor = new Professor(nome, senha);
                 sysMat.cadastro(professor);
-                System.out.println("Professor cadastrado com sucesso");
+                System.out.println("Professor cadastrado com sucesso: " + professor.getNome());
             } else {
                 System.out.println("Opção inválida!");
             }
