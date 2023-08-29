@@ -15,7 +15,7 @@ public class SistemaMatricula {
     private Usuario usuarioAtual;
     private static final String arqUsuario = "pucmg-2023-02-lds-g1\\implementacao\\src\\arquivos\\arqUsuarios.txt";
     private static final String arqDisciplina = "pucmg-2023-02-lds-g1\\implementacao\\src\\arquivos\\arqDisciplina.txt";
-    public SistemaCobranca financeiro = new SistemaCobranca();
+    private SistemaCobranca financeiro = new SistemaCobranca();
     private HashMap<String, Usuario> usuarios = new HashMap<>();
     private HashMap<String, Disciplina> disciplinas = new HashMap<>();
 
