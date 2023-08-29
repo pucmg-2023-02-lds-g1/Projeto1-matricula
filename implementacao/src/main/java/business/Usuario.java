@@ -1,6 +1,6 @@
 package business;
 
-public class Usuario {
+public abstract class Usuario implements ISalvavel {
     private String nome;
     private String senha;
 
@@ -24,4 +24,6 @@ public class Usuario {
     public void setSenha(String senha) {
         
     }
+
+    public abstract String getDados();
 }

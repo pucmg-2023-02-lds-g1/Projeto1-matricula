@@ -19,6 +19,7 @@ public class Secretario extends Usuario implements ISalvavel{
 
     }
 
+    @Override
     public String getDados(){
         return "S;" + this.nome + ";" + this.senha;
     }

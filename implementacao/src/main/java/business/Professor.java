@@ -10,6 +10,7 @@ public class Professor extends Usuario implements ISalvavel {
 
     }
 
+    @Override
     public String getDados(){
         return "P;" + this.nome + ";" + this.senha;
     }
