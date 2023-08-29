@@ -9,6 +9,7 @@ public class App {
 
         try {
             SistemaMatricula sysMat = new SistemaMatricula("Sistema Matrícula");
+            //menu(sysMat);
             menuSecretario(sysMat);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -21,10 +22,14 @@ public class App {
         do {
             System.out.println("Selecione uma opção:");
             System.out.println("1 - Fazer login");
+            System.out.println("0 - Salvar dados");
             opcao = entrada.nextInt();
             switch (opcao) {
                 case 1:
                     fazerLogin(sysMat);
+                    break;
+                case 0:
+                    sysMat.salvarDados();
                     break;
             }
         } while (opcao != 0);
@@ -37,10 +42,14 @@ public class App {
         do {
             System.out.println("Selecione uma opção:");
             System.out.println("1 - Cadastrar Usuario");
+             System.out.println("0 - Salvar dados");
             opcao = entrada.nextInt();
             switch (opcao) {
                 case 1:
                     cadastro(sysMat);
+                    break;
+                case 0:
+                    sysMat.salvarDados();
                     break;
             }
         } while (opcao != 0);
