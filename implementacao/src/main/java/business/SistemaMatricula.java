@@ -60,8 +60,12 @@ public class SistemaMatricula {
         return true;
     }
 
-    public void cadastro(){
-
+    public void cadastro(Usuario u) throws UsuarioInvalidoException {
+        if (!usuarios.containsKey(u.getNome())) {
+            this.usuarios.put(u.getNome(), u);
+        } else {
+            throw new UsuarioInvalidoException("Esse usuario já existe!");
+        }
     }
 
     private void carregarUsuario() {
