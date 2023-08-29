@@ -21,6 +21,10 @@ public class Disciplina implements IObrigatorio, IAtivada,ISalvavel{
     }
 
 
+    public Disciplina(String nomeDisciplina, String idDisciplina) {
+    }
+
+
     public void setAlunos(List<Aluno> alunos) {
         Alunos = alunos;
     }

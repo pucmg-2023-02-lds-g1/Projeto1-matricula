@@ -12,7 +12,8 @@ public class SistemaMatricula {
     
     private String nome;
     private Usuario usuarioAtual;
-    private static final String arqUsuario = "implementacao\\src\\arquivos\\arqUsuarios.txt";
+    private static final String arqUsuario = "pucmg-2023-02-lds-g1\\implementacao\\src\\arquivos\\arqUsuarios.txt";
+    private static final String arqDisciplina = "pucmg-2023-02-lds-g1\\implementacao\\src\\arquivos\\arqDisciplina.txt";
     private HashMap<String, Usuario> usuarios = new HashMap<>();
     private HashMap<String, Disciplina> disciplinas = new HashMap<>();
 
@@ -27,6 +28,7 @@ public class SistemaMatricula {
 
     public SistemaMatricula(String nome){
 
+        carregarDisciplina();
         carregarUsuario();
 
         if(nome.length() > 1){
@@ -111,10 +113,37 @@ public class SistemaMatricula {
         }
     }
 
+    private void carregarDisciplina() {
+        try {
+
+
+            BufferedReader reader = new BufferedReader(new FileReader(arqDisciplina));
+            String linha;
+            reader.readLine();
+
+            while ((linha = reader.readLine()) != null) {
+                StringTokenizer str = new StringTokenizer(linha, ";");
+                String nomeDisciplina = str.nextToken();
+                String idDisciplina = str.nextToken();
+                String nomeCurso = str.nextToken();
+
+                Disciplina disciplina = new Disciplina(nomeDisciplina, idDisciplina);
+            
+                disciplinas.put(nomeCurso, disciplina);
+            }
+            reader.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void criarDisciplina(String nome ,int maxAlunos,IObrigatorio obrigatorio){
         Disciplina atual= new Disciplina(maxAlunos, nome, obrigatorio);
         this.getDisciplinas().put(nome, atual);
     }
+
 
     public String visualizarDisciplinas(){
         StringBuilder resultado = new StringBuilder();
