@@ -146,8 +146,8 @@ public class SistemaMatricula {
         }
     }
 
-    public void criarDisciplina(String nome, int maxAlunos, IObrigatorio obrigatorio) {
-        Disciplina atual = new Disciplina(maxAlunos, nome, obrigatorio);
+    public void criarDisciplina(String nome, int maxAlunos ) {
+        Disciplina atual = new Disciplina(maxAlunos, nome );
         this.getDisciplinas().put(nome, atual);
     }
 
@@ -200,5 +200,10 @@ public class SistemaMatricula {
             throw new ClassCastException("Você não pode ver as cobranças porque você não é um aluno");
         }
 
+    }
+
+    public void setObrigatoria(Disciplina disciplina){
+        
+        disciplina.setObrigatoria(new Disciplina(20,"a"));
     }
 }

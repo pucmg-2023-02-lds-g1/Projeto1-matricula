@@ -6,7 +6,7 @@ public class Disciplina implements IObrigatorio, IAtivada,ISalvavel{
     private int maxAlunos;
     private String nome;
     private IAtivada ativada;
-    private IObrigatorio obrigatoria;
+    private IObrigatorio obrigatoria=null;
 
 
     public List<Aluno> getAlunos() {
@@ -14,10 +14,10 @@ public class Disciplina implements IObrigatorio, IAtivada,ISalvavel{
     }
 
 
-    public Disciplina(int maxAlunos, String nome, IObrigatorio obrigatoria) {
+    public Disciplina(int maxAlunos, String nome) {
         this.maxAlunos = maxAlunos;
         this.nome = nome;
-        this.obrigatoria = obrigatoria;
+        
     }
 
 
