@@ -10,11 +10,12 @@ import java.util.Map;
 import java.util.StringTokenizer;
 
 public class SistemaMatricula {
-    
+
     private String nome;
     private Usuario usuarioAtual;
     private static final String arqUsuario = "pucmg-2023-02-lds-g1\\implementacao\\src\\arquivos\\arqUsuarios.txt";
     private static final String arqDisciplina = "pucmg-2023-02-lds-g1\\implementacao\\src\\arquivos\\arqDisciplina.txt";
+    public SistemaCobranca financeiro = new SistemaCobranca();
     private HashMap<String, Usuario> usuarios = new HashMap<>();
     private HashMap<String, Disciplina> disciplinas = new HashMap<>();
 
@@ -22,54 +23,59 @@ public class SistemaMatricula {
         return disciplinas;
     }
 
-
     public void setDisciplinas(HashMap<String, Disciplina> disciplinas) {
         this.disciplinas = disciplinas;
     }
 
-    public SistemaMatricula(String nome){
+    public SistemaMatricula(String nome) {
 
         carregarDisciplina();
         carregarUsuario();
+        setNome(nome);
+    }
 
-        if(nome.length() > 1){
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        if (nome.length() > 1) {
             this.nome = nome;
         }
     }
 
-
-    public Disciplina matricularDisciplina(String nome, String nomeDisciplina){
-
-        return null;
-    }
-
-    public Disciplina cancelarMatricula(String nome, String nomeDisciplina){
+    public Disciplina matricularDisciplina(String nome, String nomeDisciplina) {
 
         return null;
     }
 
-    public void confereDisciplina(){
-        
+    public Disciplina cancelarMatricula(String nome, String nomeDisciplina) {
+
+        return null;
     }
-    
-    public void notificarSistemaDeCobranca(){
+
+    public void confereDisciplina() {
 
     }
-     
-    public String visualizarAlunos(String nomeDisciplina){
+
+    public void notificarSistemaDeCobranca() {
+
+    }
+
+    public String visualizarAlunos(String nomeDisciplina) {
 
         return "";
     }
 
-    public boolean validarLogin(String nome, String senha) throws Exception{
-         usuarioAtual = usuarios.get(nome);
-            if (usuarioAtual == null) {
-                throw new Exception("Login incorreto!");// Criar exceção específica 
-            }
-            if (!senha.equals(usuarioAtual.getSenha())) {
-                this.usuarioAtual = null;
-                throw new Exception("Senha incorreta!");// Criar exceção específica 
-            }
+    public boolean validarLogin(String nome, String senha) throws Exception {
+        usuarioAtual = usuarios.get(nome);
+        if (usuarioAtual == null) {
+            throw new Exception("Login incorreto!");// Criar exceção específica
+        }
+        if (!senha.equals(usuarioAtual.getSenha())) {
+            this.usuarioAtual = null;
+            throw new Exception("Senha incorreta!");// Criar exceção específica
+        }
         return true;
     }
 
@@ -96,9 +102,9 @@ public class SistemaMatricula {
                 String nome = str.nextToken();
                 String senha = str.nextToken();
 
-                if(tipo.equals("A")) {
+                if (tipo.equals("A")) {
                     usuario = new Aluno(nome, senha);
-                } else if(tipo.equals("P")) {
+                } else if (tipo.equals("P")) {
                     usuario = new Professor(nome, senha);
                 } else {
                     usuario = new Secretario(nome, senha);
@@ -117,7 +123,6 @@ public class SistemaMatricula {
     private void carregarDisciplina() {
         try {
 
-
             BufferedReader reader = new BufferedReader(new FileReader(arqDisciplina));
             String linha;
             reader.readLine();
@@ -129,7 +134,7 @@ public class SistemaMatricula {
                 String nomeCurso = str.nextToken();
 
                 Disciplina disciplina = new Disciplina(nomeDisciplina, idDisciplina);
-            
+
                 disciplinas.put(nomeCurso, disciplina);
             }
             reader.close();
@@ -140,19 +145,19 @@ public class SistemaMatricula {
         }
     }
 
-    public void criarDisciplina(String nome ,int maxAlunos,IObrigatorio obrigatorio){
-        Disciplina atual= new Disciplina(maxAlunos, nome, obrigatorio);
+    public void criarDisciplina(String nome, int maxAlunos, IObrigatorio obrigatorio) {
+        Disciplina atual = new Disciplina(maxAlunos, nome, obrigatorio);
         this.getDisciplinas().put(nome, atual);
     }
 
-
-    public String visualizarDisciplinas(){
+    public String visualizarDisciplinas() {
         StringBuilder resultado = new StringBuilder();
         HashMap<String, Disciplina> disciplinas = this.getDisciplinas();
 
-        for(Map.Entry<String, Disciplina> atual : disciplinas.entrySet() ){
-            resultado.append(atual.getKey()).append(": ").append("Maximo alunos:").append(atual.getValue().getMaxAlunos()).append(", ")
-            .append("É obrigatoria: ").append(atual.getValue().getObrigatoria()).append("\n");
+        for (Map.Entry<String, Disciplina> atual : disciplinas.entrySet()) {
+            resultado.append(atual.getKey()).append(": ").append("Maximo alunos:")
+                    .append(atual.getValue().getMaxAlunos()).append(", ")
+                    .append("É obrigatoria: ").append(atual.getValue().getObrigatoria()).append("\n");
         }
         return resultado.toString();
     }
@@ -181,8 +186,18 @@ public class SistemaMatricula {
         escreveArquivo(disciplinas, arqDisciplina);
     }
 
-    public void salvarDados(){
+    public void salvarDados() {
         escreveArqUsuario();
         escreveArqDisciplina();
+    }
+
+    public String visualizarCobranca(){
+
+        try{
+           return ((Aluno) usuarioAtual).visualizarCobranca(financeiro);
+        }catch(ClassCastException E){
+            throw new ClassCastException("Você não pode ver as cobranças porque você não é um aluno");
+        }
+        
     }
 }
