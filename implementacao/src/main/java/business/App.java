@@ -36,23 +36,46 @@ public class App {
         // construir menu principal aqui com as opções
 
     }
-
     public static void menuSecretario(SistemaMatricula sysMat) {
         int opcao;
         do {
             System.out.println("Selecione uma opção:");
             System.out.println("1 - Cadastrar Usuario");
+            System.out.println("2 - Cadastrar Nova Disciplina");
+            System.out.println("3 - Vizualizar disciplinas");
              System.out.println("0 - Salvar dados");
             opcao = entrada.nextInt();
             switch (opcao) {
                 case 1:
                     cadastro(sysMat);
                     break;
+                case 2:
+                    cadastroDisciplina(sysMat);
+                    break;
+                case 3: 
+                    sysMat.visualizarDisciplinas();
+                    break;
                 case 0:
                     sysMat.salvarDados();
                     break;
             }
         } while (opcao != 0);
+
+    }
+
+   private static void cadastroDisciplina(SistemaMatricula sysMat) {
+        System.out.println("Digite o nome da disciplina: ");
+        String nome= entrada.nextLine();
+        System.out.println("/n Digite o maximo de alunos desse disciplina: ");
+        int maxAlunos= entrada.nextInt();
+        System.out.println("Essa disicplina é obrigatoria?(S/N) ");
+        String obrigatorio= entrada.nextLine();
+        if(obrigatorio=="S"){
+            sysMat.criarDisciplina(nome, maxAlunos, null);
+        }else{
+            sysMat.criarDisciplina(nome, maxAlunos, null);
+        }
+        System.out.println("Disciplina criada com sucesso!");
 
     }
 
