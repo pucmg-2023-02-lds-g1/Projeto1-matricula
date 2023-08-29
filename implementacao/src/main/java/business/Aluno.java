@@ -29,6 +29,7 @@ public class Aluno extends Usuario implements ISalvavel {
 
     }
 
+    @Override
     public String getDados(){
         return "A;" + this.nome + ";" + this.senha;
     }

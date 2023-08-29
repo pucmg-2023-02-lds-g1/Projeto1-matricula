@@ -9,6 +9,7 @@ public class App {
 
         try {
             SistemaMatricula sysMat = new SistemaMatricula("Sistema Matrícula");
+            //menu(sysMat);
             menuSecretario(sysMat);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -21,10 +22,14 @@ public class App {
         do {
             System.out.println("Selecione uma opção:");
             System.out.println("1 - Fazer login");
+            System.out.println("0 - Salvar dados");
             opcao = entrada.nextInt();
             switch (opcao) {
                 case 1:
                     fazerLogin(sysMat);
+                    break;
+                case 0:
+                    sysMat.salvarDados();
                     break;
             }
         } while (opcao != 0);
@@ -37,10 +42,14 @@ public class App {
         do {
             System.out.println("Selecione uma opção:");
             System.out.println("1 - Cadastrar Usuario");
+             System.out.println("0 - Salvar dados");
             opcao = entrada.nextInt();
             switch (opcao) {
                 case 1:
                     cadastro(sysMat);
+                    break;
+                case 0:
+                    sysMat.salvarDados();
                     break;
             }
         } while (opcao != 0);
@@ -60,11 +69,11 @@ public class App {
             if (opcao == 1) {
                 Aluno aluno = new Aluno(nome, senha);
                 sysMat.cadastro(aluno);
-                System.out.println("Aluno cadastrado com sucesso");
+                System.out.println("Aluno cadastrado com sucesso: "+aluno.getNome());
             } else if (opcao == 2) {
                 Professor professor = new Professor(nome, senha);
                 sysMat.cadastro(professor);
-                System.out.println("Professor cadastrado com sucesso");
+                System.out.println("Professor cadastrado com sucesso: " + professor.getNome());
             } else {
                 System.out.println("Opção inválida!");
             }

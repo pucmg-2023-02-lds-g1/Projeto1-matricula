@@ -3,6 +3,7 @@ package business;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -154,5 +155,34 @@ public class SistemaMatricula {
             .append("É obrigatoria: ").append(atual.getValue().getObrigatoria()).append("\n");
         }
         return resultado.toString();
+    }
+
+    private void escreveArquivo(HashMap<?, ? extends ISalvavel> map, String nomeArquivo) {
+        try {
+            FileWriter arquivo = new FileWriter(nomeArquivo, false);
+            map.forEach((key, value) -> {
+                try {
+                    arquivo.write(value.getDados());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
+            arquivo.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void escreveArqUsuario() {
+        escreveArquivo(usuarios, arqUsuario);
+    }
+
+    private void escreveArqDisciplina() {
+        escreveArquivo(disciplinas, arqDisciplina);
+    }
+
+    public void salvarDados(){
+        escreveArqUsuario();
+        escreveArqDisciplina();
     }
 }
