@@ -12,11 +12,11 @@ public class Aluno extends Usuario implements ISalvavel {
         
     }
 
-    void addDisciplinas(){
+    public void addDisciplinas(){
 
     }
 
-    void removeDisciplinas(){
+    public void removeDisciplinas(){
         
     }
 
@@ -25,8 +25,9 @@ public class Aluno extends Usuario implements ISalvavel {
     }
 
     
-    void visualizarCobranca(){
+    public String visualizarCobranca(SistemaCobranca financeiro){
 
+        return financeiro.visualizaCobranca(this.nome);
     }
 
     @Override
