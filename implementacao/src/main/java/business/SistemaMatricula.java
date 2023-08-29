@@ -14,6 +14,16 @@ public class SistemaMatricula {
     private Usuario usuarioAtual;
     private static final String arqUsuario = "implementacao\\src\\arquivos\\arqUsuarios.txt";
     private HashMap<String, Usuario> usuarios = new HashMap<>();
+    private HashMap<String, Disciplina> disciplinas = new HashMap<>();
+
+    public HashMap<String, Disciplina> getDisciplinas() {
+        return disciplinas;
+    }
+
+
+    public void setDisciplinas(HashMap<String, Disciplina> disciplinas) {
+        this.disciplinas = disciplinas;
+    }
 
     public SistemaMatricula(String nome){
 
@@ -99,5 +109,21 @@ public class SistemaMatricula {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void criarDisciplina(String nome ,int maxAlunos,IObrigatorio obrigatorio){
+        Disciplina atual= new Disciplina(maxAlunos, nome, obrigatorio);
+        this.getDisciplinas().put(nome, atual);
+    }
+
+    public String visualizarDisciplinas(){
+        StringBuilder resultado = new StringBuilder();
+        HashMap<String, Disciplina> disciplinas = this.getDisciplinas();
+
+        for(Map.Entry<String, Disciplina> atual : disciplinas.entrySet() ){
+            resultado.append(atual.getKey()).append(": ").append("Maximo alunos:").append(atual.getValue().getMaxAlunos()).append(", ")
+            .append("É obrigatoria: ").append(atual.getValue().getObrigatoria()).append("\n");
+        }
+        return resultado.toString();
     }
 }
