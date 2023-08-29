@@ -59,7 +59,8 @@ public class SistemaMatricula {
     }
 
     public void notificarSistemaDeCobranca() {
-
+    
+        financeiro.emitirCobranca(usuarioAtual.getNome(), arqDisciplina, null);
     }
 
     public String visualizarAlunos(String nomeDisciplina) {
@@ -191,13 +192,13 @@ public class SistemaMatricula {
         escreveArqDisciplina();
     }
 
-    public String visualizarCobranca(){
+    public String visualizarCobranca() {
 
-        try{
-           return ((Aluno) usuarioAtual).visualizarCobranca(financeiro);
-        }catch(ClassCastException E){
+        try {
+            return ((Aluno) usuarioAtual).visualizarCobranca(financeiro);
+        } catch (ClassCastException E) {
             throw new ClassCastException("Você não pode ver as cobranças porque você não é um aluno");
         }
-        
+
     }
 }
