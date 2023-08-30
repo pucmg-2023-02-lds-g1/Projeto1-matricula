@@ -109,6 +109,14 @@ public class SistemaMatricula {
         }
     }
 
+     public void excluirUsuario(String nomeUsuario) throws UsuarioInvalidoException {
+        if (usuarios.containsKey(nomeUsuario)) {
+            this.usuarios.remove(nomeUsuario);
+        } else {
+            throw new UsuarioInvalidoException("Esse usuario não existe!");
+        }
+    }
+
     private void carregarUsuario() {
         try {
 
@@ -227,4 +235,5 @@ public class SistemaMatricula {
         
         disciplina.setObrigatoria(new Disciplina(20,"a"));
     }
+
 }

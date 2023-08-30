@@ -9,7 +9,7 @@ public class App {
 
         try {
             SistemaMatricula sysMat = new SistemaMatricula("Sistema Matrícula");
-            //menu(sysMat);
+            // menu(sysMat);
             menuSecretario(sysMat);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -36,31 +36,36 @@ public class App {
         // construir menu principal aqui com as opções
 
     }
+
     public static void menuSecretario(SistemaMatricula sysMat) {
         int opcao;
         do {
             System.out.println("Selecione uma opção:");
             System.out.println("1 - Cadastrar Usuario");
-            System.out.println("2 - Cadastrar Nova Disciplina");
-            System.out.println("3 - Vizualizar disciplinas");
-            System.out.println("4 - Matricular aluno");
-            System.out.println("5 - Desmatricular aluno");
+            System.out.println("2 - Excluir Usuario");
+            System.out.println("3 - Cadastrar Nova Disciplina");
+            System.out.println("4 - Vizualizar disciplinas");
+            System.out.println("5 - Matricular aluno");
+            System.out.println("6 - Desmatricular aluno");
             System.out.println("0 - Salvar dados");
             opcao = entrada.nextInt();
             switch (opcao) {
                 case 1:
-                    cadastro(sysMat);
+                    cadastroUsuario(sysMat);
                     break;
                 case 2:
+                    excluirUsuario(sysMat);
+                    break;
+                case 3:
                     cadastroDisciplina(sysMat);
                     break;
-                case 3: 
+                case 4:
                     sysMat.visualizarDisciplinas();
                     break;
-                case 4:
+                case 5:
                     matricularAluno(sysMat);
                     break;
-                case 5: 
+                case 6:
                     desmatricularAluno(sysMat);
                     break;
                 case 0:
@@ -71,22 +76,34 @@ public class App {
 
     }
 
-   private static void cadastroDisciplina(SistemaMatricula sysMat) {
+    private static void excluirUsuario(SistemaMatricula sysMat) {
+        entrada.nextLine();
+        System.out.println("Digite o nome do usuario que você quer excluir: ");
+        String nome = entrada.nextLine();
+        try {
+            sysMat.excluirUsuario(nome);
+        } catch (UsuarioInvalidoException e) {
+           System.out.println(e.getMessage());
+        }
+    }
+
+    private static void cadastroDisciplina(SistemaMatricula sysMat) {
         System.out.println("Digite o nome da disciplina: ");
-        String nome= entrada.nextLine();
+        String nome = entrada.nextLine();
         System.out.println("/n Digite o maximo de alunos desse disciplina: ");
-        int maxAlunos= entrada.nextInt();
+        int maxAlunos = entrada.nextInt();
         Disciplina disciplina = new Disciplina(maxAlunos, nome);
         System.out.println("Essa disicplina é obrigatoria?(S/N) ");
-        String op= entrada.nextLine();
-        if(op=="S"){ 
-            sysMat.setObrigatoria(disciplina); }
-        
+        String op = entrada.nextLine();
+        if (op == "S") {
+            sysMat.setObrigatoria(disciplina);
+        }
+
         System.out.println("Disciplina criada com sucesso!");
 
     }
 
-    private static void cadastro(SistemaMatricula sysMat) {
+    private static void cadastroUsuario(SistemaMatricula sysMat) {
         System.out.println("Digite 1 para cadastrar um aluno ou 2 para cadastrar um professor: ");
         int opcao = entrada.nextInt();
         entrada.nextLine();
@@ -99,7 +116,7 @@ public class App {
             if (opcao == 1) {
                 Aluno aluno = new Aluno(nome, senha);
                 sysMat.cadastro(aluno);
-                System.out.println("Aluno cadastrado com sucesso: "+aluno.getNome());
+                System.out.println("Aluno cadastrado com sucesso: " + aluno.getNome());
             } else if (opcao == 2) {
                 Professor professor = new Professor(nome, senha);
                 sysMat.cadastro(professor);
@@ -132,26 +149,26 @@ public class App {
     }
 
     private static void matricularAluno(SistemaMatricula sysMat) {
-        
+
         entrada.nextLine();
         System.out.println("Digite o nome do aluno: ");
         String nomeAluno = entrada.nextLine();
-        
+
         System.out.println("Digite o nome da disciplina: ");
         String nomeDisciplina = entrada.nextLine();
-        
-        sysMat.matricularDisciplina(nomeAluno,nomeDisciplina);
+
+        sysMat.matricularDisciplina(nomeAluno, nomeDisciplina);
     }
 
     private static void desmatricularAluno(SistemaMatricula sysMat) {
-        
+
         System.out.println("Digite o nome do aluno: ");
         String nomeAluno = entrada.nextLine();
-        
+
         System.out.println("Digite o nome da disciplina: ");
         String nomeDisciplina = entrada.nextLine();
-        
-        sysMat.cancelarMatricula(nomeAluno,nomeDisciplina);
+
+        sysMat.cancelarMatricula(nomeAluno, nomeDisciplina);
     }
 
 }
