@@ -208,6 +208,11 @@ public class SistemaMatricula {
     }
 
     private void escreveArqUsuario() {
+        for (Map.Entry<String, Usuario> entry : usuarios.entrySet()) {
+            String key = entry.getKey();
+            String value = entry.getValue().toString();
+            System.out.println("Key: " + key + ", Value: " + value);
+        }
         escreveArquivo(usuarios, arqUsuario);
     }
 
