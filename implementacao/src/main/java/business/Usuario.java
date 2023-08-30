@@ -1,6 +1,6 @@
 package business;
 
-public abstract class Usuario implements ISalvavel {
+public abstract class Usuario {
     private String nome;
     private String senha;
 

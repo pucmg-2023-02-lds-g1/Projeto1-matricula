@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
 
@@ -28,7 +29,6 @@ public class SistemaMatricula {
     }
 
     public SistemaMatricula(String nome) {
-
         carregarDisciplina();
         carregarUsuario();
         setNome(nome);
@@ -44,18 +44,39 @@ public class SistemaMatricula {
         }
     }
 
-    public Disciplina matricularDisciplina(String nome, String nomeDisciplina) {
+    public void matricularDisciplina(String nome, String nomeDisciplina) {
+            
 
-        return null;
+        if(!confereDisciplina(((Aluno) usuarios.get(nome)), (disciplinas.get(nomeDisciplina)))){
+        try {
+            System.out.println("passei");
+            ((Aluno) usuarios.get(nome)).addDisciplinas(disciplinas.get(nomeDisciplina));
+        } catch (ClassCastException E) {
+            throw new ClassCastException("Você não pode adicionar");
+        }
+        } else {
+            System.out.println("O aluno já está matriculado nessa matéria");
+        }
+
+        System.out.println("nn passei");
+
     }
 
-    public Disciplina cancelarMatricula(String nome, String nomeDisciplina) {
+    public void cancelarMatricula(String nome, String nomeDisciplina) {
 
-        return null;
+        if(!confereDisciplina(((Aluno) usuarios.get(nome)), (disciplinas.get(nomeDisciplina)))){        
+        try {
+            ((Aluno) usuarios.get(nome)).removeDisciplinas(disciplinas.get(nomeDisciplina));
+        } catch (ClassCastException E) {
+            throw new ClassCastException("Você não pode adicionar");
+        }
+        } else {
+            System.out.println("O aluno não está matriculado nessa matéria");
+        }
     }
 
-    public void confereDisciplina() {
-
+    public boolean confereDisciplina(Aluno aluno, Disciplina disciplina) {
+        return aluno.getDisciplinas().contains(disciplina);
     }
 
     public void notificarSistemaDeCobranca() {

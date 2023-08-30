@@ -3,25 +3,25 @@ package business;
 import java.util.List;
 
 public class Aluno extends Usuario implements ISalvavel {
-    private List disciplinas;
+    private List<Disciplina> disciplinas;
     private String nome;
     private String senha;
 
     Aluno(String nome, String senha) {
         super(nome, senha);
-        
     }
 
-    public void addDisciplinas(){
-
+    public void addDisciplinas(Disciplina disciplina){
+        getDisciplinas().add(disciplina);
+        disciplina.addAlunos(this);
     }
 
-    public void removeDisciplinas(){
-        
+    public void removeDisciplinas(Disciplina disciplina){
+        getDisciplinas().remove(disciplina);
     }
 
-    public List getDisciplinas() {
-        return disciplinas;
+    public List<Disciplina> getDisciplinas() {
+        return this.disciplinas;
     }
 
     
