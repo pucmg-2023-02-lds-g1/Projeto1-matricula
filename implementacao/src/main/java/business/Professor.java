@@ -1,6 +1,6 @@
 package business;
 
-public class Professor extends Usuario implements ISalvavel {
+public class Professor extends Usuario {
 
     Professor(String nome, String senha) {
         super(nome, senha);

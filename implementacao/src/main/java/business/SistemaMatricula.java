@@ -191,12 +191,12 @@ public class SistemaMatricula {
         return resultado.toString();
     }
 
-    private void escreveArquivo(HashMap<?, ?> dados, String nomeArquivo) {
+    private void escreveArquivo(HashMap<?, ? extends ISalvavel> dados , String nomeArquivo) {
         try {
             FileWriter arquivo = new FileWriter(nomeArquivo, false);
             dados.forEach((key, value) -> {
                 try {
-                    arquivo.write(((ISalvavel) value).getDados());
+                    arquivo.write((value).getDados());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
