@@ -43,7 +43,9 @@ public class App {
             System.out.println("1 - Cadastrar Usuario");
             System.out.println("2 - Cadastrar Nova Disciplina");
             System.out.println("3 - Vizualizar disciplinas");
-             System.out.println("0 - Salvar dados");
+            System.out.println("4 - Matricular aluno");
+            System.out.println("5 - Desmatricular aluno");
+            System.out.println("0 - Salvar dados");
             opcao = entrada.nextInt();
             switch (opcao) {
                 case 1:
@@ -54,6 +56,12 @@ public class App {
                     break;
                 case 3: 
                     sysMat.visualizarDisciplinas();
+                    break;
+                case 4:
+                    matricularAluno(sysMat);
+                    break;
+                case 5: 
+                    desmatricularAluno(sysMat);
                     break;
                 case 0:
                     sysMat.salvarDados();
@@ -122,4 +130,28 @@ public class App {
         }
 
     }
+
+    private static void matricularAluno(SistemaMatricula sysMat) {
+        
+        entrada.nextLine();
+        System.out.println("Digite o nome do aluno: ");
+        String nomeAluno = entrada.nextLine();
+        
+        System.out.println("Digite o nome da disciplina: ");
+        String nomeDisciplina = entrada.nextLine();
+        
+        sysMat.matricularDisciplina(nomeAluno,nomeDisciplina);
+    }
+
+    private static void desmatricularAluno(SistemaMatricula sysMat) {
+        
+        System.out.println("Digite o nome do aluno: ");
+        String nomeAluno = entrada.nextLine();
+        
+        System.out.println("Digite o nome da disciplina: ");
+        String nomeDisciplina = entrada.nextLine();
+        
+        sysMat.cancelarMatricula(nomeAluno,nomeDisciplina);
+    }
+
 }
