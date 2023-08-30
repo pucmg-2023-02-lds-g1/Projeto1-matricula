@@ -9,6 +9,6 @@ public class Professor extends Usuario {
 
     @Override
     public String getDados(){
-        return "P;" + getNome() + ";" + getSenha();
+        return "P;" + getNome() + ";" + getSenha() + "\n";
     }
 }

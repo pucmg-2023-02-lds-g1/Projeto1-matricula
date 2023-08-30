@@ -30,6 +30,6 @@ public class Aluno extends Usuario {
 
     @Override
     public String getDados(){
-        return "A;" + getNome() + ";" + getSenha();
+        return "A;" + getNome() + ";" + getSenha() + "\n";
     }
 }

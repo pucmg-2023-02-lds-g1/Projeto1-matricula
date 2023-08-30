@@ -17,6 +17,6 @@ public class Secretario extends Usuario{
 
     @Override
     public String getDados(){
-        return "S;" + getNome() + ";" + getSenha();
+        return "S;" + getNome() + ";" + getSenha() + "\n";
     }
 }
