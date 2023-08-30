@@ -2,9 +2,6 @@ package business;
 
 public class Professor extends Usuario implements ISalvavel {
 
-    private String nome;
-    private String senha;
-
     Professor(String nome, String senha) {
         super(nome, senha);
 
@@ -12,6 +9,6 @@ public class Professor extends Usuario implements ISalvavel {
 
     @Override
     public String getDados(){
-        return "P;" + this.nome + ";" + this.senha;
+        return "P;" + getNome() + ";" + getSenha();
     }
 }

@@ -1,26 +1,22 @@
 package business;
 public class Secretario extends Usuario{
-
-    private String nome;
-    private String senha;
-    
     
     Secretario(String nome,String senha){
         super(nome,senha);
     }
 
     
-    String gerarCurriculo(){
+    public String gerarCurriculo(){
         return null;
     }
 
 
-    void salvarDados(){
+    public void salvarDados(){
 
     }
 
     @Override
     public String getDados(){
-        return "S;" + this.nome + ";" + this.senha;
+        return "S;" + getNome() + ";" + getSenha();
     }
 }
