@@ -1,5 +1,5 @@
 package business;
-public class Secretario extends Usuario{
+public class Secretario extends Usuario implements ISalvavel{
     
     Secretario(String nome,String senha){
         super(nome,senha);
