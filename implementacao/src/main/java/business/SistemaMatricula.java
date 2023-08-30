@@ -123,7 +123,6 @@ public class SistemaMatricula {
 
             BufferedReader reader = new BufferedReader(new FileReader(arqUsuario));
             String linha;
-            reader.readLine();
 
             while ((linha = reader.readLine()) != null) {
                 StringTokenizer str = new StringTokenizer(linha, ";");
@@ -142,6 +141,7 @@ public class SistemaMatricula {
                 usuarios.put(nome, usuario);
             }
             reader.close();
+            System.out.println(usuarios);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -154,7 +154,6 @@ public class SistemaMatricula {
 
             BufferedReader reader = new BufferedReader(new FileReader(arqDisciplina));
             String linha;
-            reader.readLine();
 
             while ((linha = reader.readLine()) != null) {
                 StringTokenizer str = new StringTokenizer(linha, ";");
@@ -208,11 +207,6 @@ public class SistemaMatricula {
     }
 
     private void escreveArqUsuario() {
-        for (Map.Entry<String, Usuario> entry : usuarios.entrySet()) {
-            String key = entry.getKey();
-            String value = entry.getValue().toString();
-            System.out.println("Key: " + key + ", Value: " + value);
-        }
         escreveArquivo(usuarios, arqUsuario);
     }
 

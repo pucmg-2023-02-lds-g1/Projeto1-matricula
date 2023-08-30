@@ -77,6 +77,6 @@ public class Disciplina implements IObrigatorio, IAtivada,ISalvavel{
 
     @Override
     public String getDados(){
-        return "D;" + getNome();
+        return "D;" + getNome() + "\n";
     }
 }
