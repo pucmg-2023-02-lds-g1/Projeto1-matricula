@@ -5,8 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
+import java.util.HashMap;]
 import java.util.Map;
 import java.util.StringTokenizer;
 
@@ -14,8 +13,8 @@ public class SistemaMatricula {
 
     private String nome;
     private Usuario usuarioAtual;
-    private static final String arqUsuario = "pucmg-2023-02-lds-g1\\implementacao\\src\\arquivos\\arqUsuarios.txt";
-    private static final String arqDisciplina = "pucmg-2023-02-lds-g1\\implementacao\\src\\arquivos\\arqDisciplina.txt";
+    private static final String arqUsuario = "implementacao\\src\\arquivos\\arqUsuarios.txt";
+    private static final String arqDisciplina = "implementacao\\src\\arquivos\\arqDisciplina.txt";
     private SistemaCobranca financeiro = new SistemaCobranca();
     private HashMap<String, Usuario> usuarios = new HashMap<>();
     private HashMap<String, Disciplina> disciplinas = new HashMap<>();
