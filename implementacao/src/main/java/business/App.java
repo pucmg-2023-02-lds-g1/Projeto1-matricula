@@ -60,7 +60,7 @@ public class App {
                     cadastroDisciplina(sysMat);
                     break;
                 case 4:
-                    sysMat.visualizarDisciplinas();
+                    System.out.println(sysMat.visualizarDisciplinas()); 
                     break;
                 case 5:
                     matricularAluno(sysMat);
@@ -87,20 +87,21 @@ public class App {
         }
     }
 
+
     private static void cadastroDisciplina(SistemaMatricula sysMat) {
         System.out.println("Digite o nome da disciplina: ");
-        String nome = entrada.nextLine();
-        System.out.println("/n Digite o maximo de alunos desse disciplina: ");
+        entrada.nextLine();
+        String nomeDisciplina = entrada.nextLine();
+        System.out.println("Digite o maximo de alunos desse disciplina: ");
         int maxAlunos = entrada.nextInt();
-        Disciplina disciplina = new Disciplina(maxAlunos, nome);
+        Disciplina atual=sysMat.criarDisciplina(nomeDisciplina, maxAlunos);
         System.out.println("Essa disicplina é obrigatoria?(S/N) ");
+        entrada.nextLine();
         String op = entrada.nextLine();
-        if (op == "S") {
-            sysMat.setObrigatoria(disciplina);
+        if (op.equals("S")) {
+            sysMat.setObrigatoria(atual);
         }
-
         System.out.println("Disciplina criada com sucesso!");
-
     }
 
     private static void cadastroUsuario(SistemaMatricula sysMat) {

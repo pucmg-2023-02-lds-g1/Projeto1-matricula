@@ -173,19 +173,29 @@ public class SistemaMatricula {
         }
     }
 
-    public void criarDisciplina(String nome, int maxAlunos ) {
+    public Disciplina criarDisciplina(String nome, int maxAlunos ) {
         Disciplina atual = new Disciplina(maxAlunos, nome );
         this.getDisciplinas().put(nome, atual);
+        return atual;
     }
 
     public String visualizarDisciplinas() {
+        String obg;
+        String hashVazio="Não existem disciplinas registradas \n";
         StringBuilder resultado = new StringBuilder();
         HashMap<String, Disciplina> disciplinas = this.getDisciplinas();
-
+        if(disciplinas.size()==0){
+            return hashVazio;
+        }
         for (Map.Entry<String, Disciplina> atual : disciplinas.entrySet()) {
-            resultado.append(atual.getKey()).append(": ").append("Maximo alunos:")
-                    .append(atual.getValue().getMaxAlunos()).append(", ")
-                    .append("É obrigatoria: ").append(atual.getValue().getObrigatoria()).append("\n");
+            if(atual.getValue().getObrigatoria()!=null){
+                obg="Sim";
+            }else{
+                obg="Não";
+            }
+            resultado.append("Nome:"+atual.getKey()).append("\n").append("Maximo alunos:")
+                    .append(atual.getValue().getMaxAlunos()).append("\n")
+                    .append("É obrigatoria: ").append(obg).append("\n\n");
         }
         return resultado.toString();
     }
