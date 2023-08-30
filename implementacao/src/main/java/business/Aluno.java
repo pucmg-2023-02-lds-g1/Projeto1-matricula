@@ -2,10 +2,8 @@ package business;
 
 import java.util.List;
 
-public class Aluno extends Usuario implements ISalvavel {
+public class Aluno extends Usuario {
     private List<Disciplina> disciplinas;
-    private String nome;
-    private String senha;
 
     Aluno(String nome, String senha) {
         super(nome, senha);
@@ -27,11 +25,11 @@ public class Aluno extends Usuario implements ISalvavel {
     
     public String visualizarCobranca(SistemaCobranca financeiro){
 
-        return financeiro.visualizaCobranca(this.nome);
+        return financeiro.visualizaCobranca(getNome());
     }
 
     @Override
     public String getDados(){
-        return "A;" + this.nome + ";" + this.senha;
+        return "A;" + getNome() + ";" + getSenha();
     }
 }
