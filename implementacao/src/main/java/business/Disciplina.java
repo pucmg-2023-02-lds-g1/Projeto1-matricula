@@ -83,4 +83,9 @@ public class Disciplina implements IObrigatorio, IAtivada,ISalvavel{
     public String getDados(){
         return "D;" + getNome() + "\n";
     }
+
+    @Override
+    public String toString(){
+        return ("Nome: "+nome+"\n"+"Maximo alunos: "+maxAlunos+"\n"+"É obrigatoria: "+obrigatoria+"\n\n");
+    }
 }
