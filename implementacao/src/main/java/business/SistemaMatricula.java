@@ -49,7 +49,7 @@ public class SistemaMatricula {
         if(!confereDisciplina(((Aluno) usuarios.get(nome)), (disciplinas.get(nomeDisciplina)))){
         try {
             System.out.println("passei");
-            ((Aluno) usuarios.get(nome)).addDisciplinas(disciplinas.get(nomeDisciplina));
+            disciplinas.get(nomeDisciplina).addAlunos((Aluno) usuarios.get(nome));
         } catch (ClassCastException E) {
             throw new ClassCastException("Você não pode adicionar");
         }
@@ -65,9 +65,9 @@ public class SistemaMatricula {
 
         if(!confereDisciplina(((Aluno) usuarios.get(nome)), (disciplinas.get(nomeDisciplina)))){        
         try {
-            ((Aluno) usuarios.get(nome)).removeDisciplinas(disciplinas.get(nomeDisciplina));
+            disciplinas.get(nomeDisciplina).removeAlunos((Aluno) usuarios.get(nome));
         } catch (ClassCastException E) {
-            throw new ClassCastException("Você não pode adicionar");
+            throw new ClassCastException("Você não pode cancelar");
         }
         } else {
             System.out.println("O aluno não está matriculado nessa matéria");
@@ -75,7 +75,7 @@ public class SistemaMatricula {
     }
 
     public boolean confereDisciplina(Aluno aluno, Disciplina disciplina) {
-        return aluno.getDisciplinas().contains(disciplina);
+        return disciplina.getAlunos().contains(aluno);
     }
 
     public void notificarSistemaDeCobranca() {

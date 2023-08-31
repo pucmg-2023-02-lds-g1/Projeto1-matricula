@@ -25,6 +25,10 @@ public class Disciplina implements IObrigatorio, IAtivada,ISalvavel{
         getAlunos().add(aluno);  
     }
 
+    public void removeAlunos(Aluno aluno){
+        getAlunos().remove(aluno);
+    }
+
 
     public Disciplina(String nomeDisciplina, String idDisciplina) {
     }
