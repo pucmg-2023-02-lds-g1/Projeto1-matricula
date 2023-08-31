@@ -49,7 +49,6 @@ public class SistemaMatricula {
 
         if(!confereDisciplina(((Aluno) usuarios.get(nome)), (disciplinas.get(nomeDisciplina)))){
         try {
-            System.out.println("passei");
             disciplinas.get(nomeDisciplina).addAlunos((Aluno) usuarios.get(nome));
         } catch (ClassCastException E) {
             throw new ClassCastException("Você não pode adicionar");
@@ -57,8 +56,6 @@ public class SistemaMatricula {
         } else {
             System.out.println("O aluno já está matriculado nessa matéria");
         }
-
-        System.out.println("nn passei");
 
     }
 
@@ -76,7 +73,10 @@ public class SistemaMatricula {
     }
 
     public boolean confereDisciplina(Aluno aluno, Disciplina disciplina) {
+        if(disciplina.getAlunos() != null)
         return disciplina.getAlunos().contains(aluno);
+
+        return false;
     }
 
     public void notificarSistemaDeCobranca() {
@@ -143,7 +143,7 @@ public class SistemaMatricula {
         return resultado.toString();
     }
 
-    public boolean validarLogin(String nome, String senha) throws Exception {
+    public Usuario validarLogin(String nome, String senha) throws Exception {
         usuarioAtual = usuarios.get(nome);
         if (usuarioAtual == null) {
             throw new Exception("Login incorreto!");// Criar exceção específica
@@ -152,7 +152,7 @@ public class SistemaMatricula {
             this.usuarioAtual = null;
             throw new Exception("Senha incorreta!");// Criar exceção específica
         }
-        return true;
+        return usuarioAtual;
     }
 
     public void cadastro(Usuario u) throws UsuarioInvalidoException {

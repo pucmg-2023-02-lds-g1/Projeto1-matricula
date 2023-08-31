@@ -1,8 +1,9 @@
 package business;
 import java.util.List;
+import java.util.LinkedList;
 
 public class Disciplina implements IObrigatorio, IAtivada,ISalvavel{
-    private List<Aluno> Alunos;
+    private List<Aluno> Alunos = new LinkedList<Aluno>();
     private int maxAlunos;
     private String nome;
     private IAtivada ativada;
@@ -22,7 +23,7 @@ public class Disciplina implements IObrigatorio, IAtivada,ISalvavel{
 
 
     public void addAlunos(Aluno aluno){
-        getAlunos().add(aluno);  
+        Alunos.add(aluno);  
     }
 
     public void removeAlunos(Aluno aluno){
@@ -86,6 +87,10 @@ public class Disciplina implements IObrigatorio, IAtivada,ISalvavel{
 
     @Override
     public String toString(){
-        return ("Nome: "+nome+"\n"+"Maximo alunos: "+maxAlunos+"\n"+"É obrigatoria: "+obrigatoria+"\n\n");
+        String obg = "Não";
+        if(obrigatoria != null){
+            obg = "Sim";
+        }
+        return ("Nome: "+nome+"\n"+"Maximo alunos: "+maxAlunos+"\n"+"É obrigatoria: "+obg+"\n\n");
     }
 }
