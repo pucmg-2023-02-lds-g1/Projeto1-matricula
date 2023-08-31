@@ -13,11 +13,11 @@ public class Aluno extends Usuario {
 
     @Override
     public String getDados(){
-        return "A;" + getNome() + ";" + getSenha() + "\n";
+        return "Aluno:" + getNome() + "\n";
     }
 
     @Override
     public String toString(){
-        return ("Nome: "+getNome()+"\n\n");
+        return ("Nome: "+getNome()+"\n");
     }
 }

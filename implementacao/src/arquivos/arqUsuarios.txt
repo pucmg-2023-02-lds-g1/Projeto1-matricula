@@ -1,4 +1,6 @@
-A;teste;testeA
-A;testesdkadj;testesdkadj123
-P;dsajdjajd123;dsajdjajd123
-A;dsadsadasdasdasdsadasd123;123123
+Aluno:teste
+Aluno:testesdkadj
+Aluno:aluno1
+Professor:dsajdjajd123
+Professor:professor1
+Aluno:dsadsadasdasdasdsadasd123

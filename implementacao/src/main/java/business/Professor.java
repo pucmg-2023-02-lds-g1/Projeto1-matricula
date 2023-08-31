@@ -21,6 +21,6 @@ public class Professor extends Usuario {
 
     @Override
     public String getDados(){
-        return "P;" + getNome() + ";" + getSenha() + "\n";
+        return "Professor:" + getNome() + "\n";
     }
 }

@@ -286,6 +286,16 @@ public class SistemaMatricula {
 
     }
 
+    public String visualizarUsuarios() {
+        StringBuilder sb = new StringBuilder();
+        for (Map.Entry<String, Usuario> entry : usuarios.entrySet()) {
+            String key = entry.getKey();
+            Usuario value = entry.getValue();
+            sb.append(value.getDados());
+        }
+        return sb.toString();
+    }
+
     public void setObrigatoria(Disciplina disciplina){
         
         disciplina.setObrigatoria(new Disciplina(20,"a"));
