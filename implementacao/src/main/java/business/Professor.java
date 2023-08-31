@@ -1,9 +1,10 @@
 package business;
 
 import java.util.List;
+import java.util.LinkedList;
 
 public class Professor extends Usuario {
-    private List<Disciplina> disciplinasLecionadas;
+    private List<Disciplina> disciplinasLecionadas = new LinkedList<Disciplina>();
 
     public List<Disciplina> getDisciplinasLecionadas() {
         return disciplinasLecionadas;
