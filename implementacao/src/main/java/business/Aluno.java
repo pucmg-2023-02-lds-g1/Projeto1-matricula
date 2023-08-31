@@ -15,4 +15,9 @@ public class Aluno extends Usuario {
     public String getDados(){
         return "A;" + getNome() + ";" + getSenha() + "\n";
     }
+
+    @Override
+    public String toString(){
+        return ("Nome: "+getNome()+"\n\n");
+    }
 }

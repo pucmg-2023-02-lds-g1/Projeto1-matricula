@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
 
@@ -84,8 +85,62 @@ public class SistemaMatricula {
     }
 
     public String visualizarAlunos(String nomeDisciplina) {
+        String listaVazia="Não existem alunos registrados nessa disciplina \n";
+        StringBuilder resultado = new StringBuilder();
+        Disciplina disciplina = disciplinas.get(nomeDisciplina);
+        if(disciplina.getAlunos().size()==0){
+            return listaVazia;
+        }
+        for (Aluno atual : disciplina.getAlunos()) {
+            resultado.append(atual.toString());
+        }
+        return resultado.toString();
+    }
 
-        return "";
+    public String visualizarDisciplinas(String nomeAluno) {
+        String hashVazio="Não existem disciplinas registradas \n";
+        StringBuilder resultado = new StringBuilder();
+        HashMap<String, Disciplina> disciplinas = this.getDisciplinas();
+        Usuario aluno = usuarios.get(nomeAluno);
+        Disciplina disciplinaComparada;
+        if(disciplinas.size()==0){
+            return hashVazio;
+        }
+        for (Map.Entry<String, Disciplina> atual : disciplinas.entrySet()) {
+            disciplinaComparada = atual.getValue();
+            if(disciplinaComparada.getAlunos().contains(aluno)){
+                resultado.append(disciplinaComparada.toString());
+            }
+        }
+        return resultado.toString();
+    }
+
+    public String visualizarDisciplinasLecionadas(String nomeProfessor) {
+        String listaVazia="Esse professor não leciona disciplinas no momento \n";
+        StringBuilder resultado = new StringBuilder();
+        Usuario professor = usuarios.get(nomeProfessor);
+        List<Disciplina> disciplinas = ((Professor)professor).getDisciplinasLecionadas();
+        if(disciplinas.size()==0){
+            return listaVazia;
+        }
+        for (Disciplina atual : disciplinas) {
+            resultado.append(atual.toString());
+        }
+        return resultado.toString();
+    }
+
+    public String visualizarAlunosDoProfessor(String nomeProfessor) {
+        String listaVazia="Esse professor não leciona disciplinas no momento \n";
+        StringBuilder resultado = new StringBuilder();
+        Professor Professor = (Professor)usuarios.get(nomeProfessor);
+        if(Professor.getDisciplinasLecionadas().size()==0){
+            return listaVazia;
+        }
+        for (Disciplina atual : Professor.getDisciplinasLecionadas()) {
+            resultado.append(atual.getNome()+":\n");
+            resultado.append(visualizarAlunos(atual.getNome()));
+        }
+        return resultado.toString();
     }
 
     public boolean validarLogin(String nome, String senha) throws Exception {
@@ -180,7 +235,6 @@ public class SistemaMatricula {
     }
 
     public String visualizarDisciplinas() {
-        String obg;
         String hashVazio="Não existem disciplinas registradas \n";
         StringBuilder resultado = new StringBuilder();
         HashMap<String, Disciplina> disciplinas = this.getDisciplinas();
@@ -188,14 +242,7 @@ public class SistemaMatricula {
             return hashVazio;
         }
         for (Map.Entry<String, Disciplina> atual : disciplinas.entrySet()) {
-            if(atual.getValue().getObrigatoria()!=null){
-                obg="Sim";
-            }else{
-                obg="Não";
-            }
-            resultado.append("Nome:"+atual.getKey()).append("\n").append("Maximo alunos:")
-                    .append(atual.getValue().getMaxAlunos()).append("\n")
-                    .append("É obrigatoria: ").append(obg).append("\n\n");
+            resultado.append(atual.getValue().toString());
         }
         return resultado.toString();
     }
