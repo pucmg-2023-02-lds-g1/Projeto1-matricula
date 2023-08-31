@@ -42,13 +42,14 @@ public class App {
         int opcao;
         do {
             System.out.println("Selecione uma opção:");
-            System.out.println("1 - Cadastrar Usuario");
-            System.out.println("2 - Excluir Usuario");
-            System.out.println("3 - Cadastrar Nova Disciplina");
+            System.out.println("1 - Cadastrar usuario");
+            System.out.println("2 - Excluir usuario");
+            System.out.println("3 - Cadastrar nova disciplina");
             System.out.println("4 - Vizualizar disciplinas");
-            System.out.println("5 - Matricular aluno");
-            System.out.println("6 - Desmatricular aluno");
-            System.out.println("7 - Mudar de conta");
+            System.out.println("5 - Vizualizar usuarios");
+            System.out.println("6 - Matricular aluno");
+            System.out.println("7 - Desmatricular aluno");
+            System.out.println("8 - Mudar de conta");
             System.out.println("0 - Salvar dados");
             opcao = entrada.nextInt();
             entrada.nextLine();
@@ -66,12 +67,15 @@ public class App {
                     System.out.println(sysMat.visualizarDisciplinas()); 
                     break;
                 case 5:
-                    matricularAluno(sysMat);
+                    System.out.println(sysMat.visualizarUsuarios());
                     break;
                 case 6:
-                    desmatricularAluno(sysMat);
+                    matricularAluno(sysMat);
                     break;
                 case 7:
+                    desmatricularAluno(sysMat);
+                    break;
+                case 8:
                     try {
                         menu(sysMat);
                     } catch (Exception e) {
