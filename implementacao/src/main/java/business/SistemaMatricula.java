@@ -49,8 +49,9 @@ public class SistemaMatricula {
         disciplinas.get(nomeDisciplina).addAlunos(aluno);
     }
 
-    public void cancelarMatricula(String nome, String nomeDisciplina) { // terminar
-        // disciplinas.get(nomeDisciplina).removeAlunos((Aluno) usuarios.get(nome));
+    public void cancelarMatricula(String nomeUsuario, String nomeDisciplina) {
+        Aluno aluno = (Aluno) filtrarUsuario(nomeUsuario);
+        disciplinas.get(nomeDisciplina).removeAlunos(aluno);
     }
 
     public boolean confereDisciplina(String disciplina) throws Exception {

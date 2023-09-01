@@ -235,11 +235,31 @@ public class App {
 
     private static void desmatricularAluno(SistemaMatricula sysMat) {
 
-        System.out.println("Digite o nome do aluno: ");
-        String nomeAluno = entrada.nextLine();
+        String nomeAluno;
+        String nomeDisciplina;
 
-        System.out.println("Digite o nome da disciplina: ");
-        String nomeDisciplina = entrada.nextLine();
+        do {
+            System.out.println("Digite o nome do aluno: ");
+            nomeAluno = entrada.nextLine();
+            try {
+                sysMat.confereAluno(nomeAluno);
+            } catch (Exception E) {
+            }
+        } while (false);
+
+        
+
+        do {
+
+            System.out.println("Digite o nome da disciplina: ");
+            nomeDisciplina = entrada.nextLine();
+            try {
+                sysMat.confereDisciplina(nomeDisciplina);
+                sysMat.confereAlunoMatriculado(nomeAluno, nomeDisciplina);
+            } catch (Exception E) {
+            }
+
+        } while (false);
 
         sysMat.cancelarMatricula(nomeAluno, nomeDisciplina);
     }
