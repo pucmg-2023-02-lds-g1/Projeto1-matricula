@@ -8,6 +8,7 @@ public class App {
     public static void main(String[] args) {
 
         try {
+            
             SistemaMatricula sysMat = new SistemaMatricula("Sistema Matrícula");
             // menu(sysMat);
             menuSecretario(sysMat);

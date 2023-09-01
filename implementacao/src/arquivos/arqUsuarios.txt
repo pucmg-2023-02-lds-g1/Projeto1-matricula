@@ -1,6 +1,4 @@
-Aluno:teste
-Aluno:testesdkadj
-Aluno:aluno1
-Professor:dsajdjajd123
-Professor:professor1
-Aluno:dsadsadasdasdasdsadasd123
+A;Aluno2;aluno123;
+A;Aluno1;aluno123;
+P;Professor1;Professor123;
+P;Professor2;professor123;

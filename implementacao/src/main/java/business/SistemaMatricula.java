@@ -196,7 +196,7 @@ public class SistemaMatricula {
                 usuarios.put(nome, usuario);
             }
             reader.close();
-            System.out.println(usuarios);
+
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -211,12 +211,13 @@ public class SistemaMatricula {
             String linha;
 
             while ((linha = reader.readLine()) != null) {
+                
                 StringTokenizer str = new StringTokenizer(linha, ";");
                 String nomeDisciplina = str.nextToken();
-                String idDisciplina = str.nextToken();
+                int maxAlunos = Integer.parseInt(str.nextToken());
                 String nomeCurso = str.nextToken();
 
-                Disciplina disciplina = new Disciplina(nomeDisciplina, idDisciplina);
+                Disciplina disciplina = new Disciplina(maxAlunos, nomeDisciplina);
 
                 disciplinas.put(nomeCurso, disciplina);
             }

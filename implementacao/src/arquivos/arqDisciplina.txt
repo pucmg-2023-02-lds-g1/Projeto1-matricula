@@ -1,0 +1,2 @@
+Disciplina1;10;Disciplina1
+Disciplina3;100;Disciplina3
