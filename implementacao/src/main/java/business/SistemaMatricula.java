@@ -44,51 +44,57 @@ public class SistemaMatricula {
         }
     }
 
-    public void matricularDisciplina(String nome, String nomeDisciplina) {
-            
-
-        if(!confereDisciplina(((Aluno) usuarios.get(nome)), (disciplinas.get(nomeDisciplina)))){
-        try {
-            disciplinas.get(nomeDisciplina).addAlunos((Aluno) usuarios.get(nome));
-        } catch (ClassCastException E) {
-            throw new ClassCastException("Você não pode adicionar");
-        }
-        } else {
-            System.out.println("O aluno já está matriculado nessa matéria");
-        }
-
+    public void matricularDisciplina(String nomeUsuario, String nomeDisciplina) {
+        Aluno aluno = (Aluno) filtrarUsuario(nomeUsuario);
+        disciplinas.get(nomeDisciplina).addAlunos(aluno);
     }
 
-    public void cancelarMatricula(String nome, String nomeDisciplina) {
+    public void cancelarMatricula(String nome, String nomeDisciplina) { // terminar
+        // disciplinas.get(nomeDisciplina).removeAlunos((Aluno) usuarios.get(nome));
+    }
 
-        if(!confereDisciplina(((Aluno) usuarios.get(nome)), (disciplinas.get(nomeDisciplina)))){        
-        try {
-            disciplinas.get(nomeDisciplina).removeAlunos((Aluno) usuarios.get(nome));
-        } catch (ClassCastException E) {
-            throw new ClassCastException("Você não pode cancelar");
-        }
+    public boolean confereDisciplina(String disciplina) throws Exception {
+        if (!disciplinas.containsKey(disciplina)) {
+            return true;
         } else {
-            System.out.println("O aluno não está matriculado nessa matéria");
+            throw new Exception();
         }
     }
 
-    public boolean confereDisciplina(Aluno aluno, Disciplina disciplina) {
-        if(disciplina.getAlunos() != null)
-        return disciplina.getAlunos().contains(aluno);
+    public boolean confereAlunoMatriculado(String aluno, String disciplina) throws Exception {
+        if (!disciplinas.get(disciplina).getAlunos().contains(aluno)) {
+            return true;
+        } else {
+            throw new Exception();
+        }
+    }
 
-        return false;
+    public boolean confereAluno(String aluno) throws Exception {
+        if (usuarios.containsKey(aluno)) {
+            return true;
+        } else {
+            throw new Exception();
+        }
+    }
+
+    public Usuario filtrarUsuario(String nomeDeUsuario) {
+        return usuarios.get(nomeDeUsuario);
+    }
+
+    public Disciplina filtrarDisciplina(String nomeDisciplina) {
+        return disciplinas.get(nomeDisciplina);
     }
 
     public void notificarSistemaDeCobranca() {
-    
+
         financeiro.emitirCobranca(usuarioAtual.getNome(), arqDisciplina, null);
     }
 
     public String visualizarAlunos(String nomeDisciplina) {
-        String listaVazia="Não existem alunos registrados nessa disciplina \n";
+        String listaVazia = "Não existem alunos registrados nessa disciplina \n";
         StringBuilder resultado = new StringBuilder();
         Disciplina disciplina = disciplinas.get(nomeDisciplina);
-        if(disciplina.getAlunos().size()==0){
+        if (disciplina.getAlunos().size() == 0) {
             return listaVazia;
         }
         for (Aluno atual : disciplina.getAlunos()) {
@@ -98,17 +104,17 @@ public class SistemaMatricula {
     }
 
     public String visualizarDisciplinas(String nomeAluno) {
-        String hashVazio="Não existem disciplinas registradas \n";
+        String hashVazio = "Não existem disciplinas registradas \n";
         StringBuilder resultado = new StringBuilder();
         HashMap<String, Disciplina> disciplinas = this.getDisciplinas();
         Usuario aluno = usuarios.get(nomeAluno);
         Disciplina disciplinaComparada;
-        if(disciplinas.size()==0){
+        if (disciplinas.size() == 0) {
             return hashVazio;
         }
         for (Map.Entry<String, Disciplina> atual : disciplinas.entrySet()) {
             disciplinaComparada = atual.getValue();
-            if(disciplinaComparada.getAlunos().contains(aluno)){
+            if (disciplinaComparada.getAlunos().contains(aluno)) {
                 resultado.append(disciplinaComparada.toString());
             }
         }
@@ -116,11 +122,11 @@ public class SistemaMatricula {
     }
 
     public String visualizarDisciplinasLecionadas(String nomeProfessor) {
-        String listaVazia="Esse professor não leciona disciplinas no momento \n";
+        String listaVazia = "Esse professor não leciona disciplinas no momento \n";
         StringBuilder resultado = new StringBuilder();
         Usuario professor = usuarios.get(nomeProfessor);
-        List<Disciplina> disciplinas = ((Professor)professor).getDisciplinasLecionadas();
-        if(disciplinas.size()==0){
+        List<Disciplina> disciplinas = ((Professor) professor).getDisciplinasLecionadas();
+        if (disciplinas.size() == 0) {
             return listaVazia;
         }
         for (Disciplina atual : disciplinas) {
@@ -130,14 +136,14 @@ public class SistemaMatricula {
     }
 
     public String visualizarAlunosDoProfessor(String nomeProfessor) {
-        String listaVazia="Esse professor não leciona disciplinas no momento \n";
+        String listaVazia = "Esse professor não leciona disciplinas no momento \n";
         StringBuilder resultado = new StringBuilder();
-        Professor Professor = (Professor)usuarios.get(nomeProfessor);
-        if(Professor.getDisciplinasLecionadas().size()==0){
+        Professor Professor = (Professor) usuarios.get(nomeProfessor);
+        if (Professor.getDisciplinasLecionadas().size() == 0) {
             return listaVazia;
         }
         for (Disciplina atual : Professor.getDisciplinasLecionadas()) {
-            resultado.append(atual.getNome()+":\n");
+            resultado.append(atual.getNome() + ":\n");
             resultado.append(visualizarAlunos(atual.getNome()));
         }
         return resultado.toString();
@@ -163,7 +169,7 @@ public class SistemaMatricula {
         }
     }
 
-     public void excluirUsuario(String nomeUsuario) throws UsuarioInvalidoException {
+    public void excluirUsuario(String nomeUsuario) throws UsuarioInvalidoException {
         if (usuarios.containsKey(nomeUsuario)) {
             this.usuarios.remove(nomeUsuario);
         } else {
@@ -211,7 +217,7 @@ public class SistemaMatricula {
             String linha;
 
             while ((linha = reader.readLine()) != null) {
-                
+
                 StringTokenizer str = new StringTokenizer(linha, ";");
                 String nomeDisciplina = str.nextToken();
                 int maxAlunos = Integer.parseInt(str.nextToken());
@@ -229,17 +235,17 @@ public class SistemaMatricula {
         }
     }
 
-    public Disciplina criarDisciplina(String nome, int maxAlunos ) {
-        Disciplina atual = new Disciplina(maxAlunos, nome );
+    public Disciplina criarDisciplina(String nome, int maxAlunos) {
+        Disciplina atual = new Disciplina(maxAlunos, nome);
         this.getDisciplinas().put(nome, atual);
         return atual;
     }
 
     public String visualizarDisciplinas() {
-        String hashVazio="Não existem disciplinas registradas \n";
+        String hashVazio = "Não existem disciplinas registradas \n";
         StringBuilder resultado = new StringBuilder();
         HashMap<String, Disciplina> disciplinas = this.getDisciplinas();
-        if(disciplinas.size()==0){
+        if (disciplinas.size() == 0) {
             return hashVazio;
         }
         for (Map.Entry<String, Disciplina> atual : disciplinas.entrySet()) {
@@ -248,7 +254,7 @@ public class SistemaMatricula {
         return resultado.toString();
     }
 
-    private void escreveArquivo(HashMap<?, ? extends ISalvavel> dados , String nomeArquivo) {
+    private void escreveArquivo(HashMap<?, ? extends ISalvavel> dados, String nomeArquivo) {
         try {
             FileWriter arquivo = new FileWriter(nomeArquivo, false);
             dados.forEach((key, value) -> {
@@ -297,9 +303,9 @@ public class SistemaMatricula {
         return sb.toString();
     }
 
-    public void setObrigatoria(Disciplina disciplina){
-        
-        disciplina.setObrigatoria(new Disciplina(20,"a"));
+    public void setObrigatoria(Disciplina disciplina) {
+
+        disciplina.setObrigatoria(new Disciplina(20, "a"));
     }
 
 }
