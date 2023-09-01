@@ -1,4 +1,5 @@
 A;Aluno2;aluno123;
 A;Aluno1;aluno123;
 P;Professor1;Professor123;
+A;vagner;000;
 P;Professor2;professor123;
