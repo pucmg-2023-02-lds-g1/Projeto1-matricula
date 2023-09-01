@@ -1,5 +1,7 @@
 package business;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class App {
@@ -132,15 +134,37 @@ public class App {
     }
 
     private static void matricularAluno(SistemaMatricula sysMat) {
+
+        String nomeAluno;
+        String nomeDisciplina;
+
+        do{
+                System.out.println("Digite o nome do aluno: ");
+                nomeAluno = entrada.nextLine();
+            try {
+                sysMat.confereAluno(nomeAluno);
+            } catch(Exception E) {
+            }
+        } while(false);
+
+        System.out.println("Digite o numero de materias em que o aluno será matriculado: ");
+        int numMat = entrada.nextInt();
+
+        for(int i=0; i==numMat; i++) {
+            do{
+                
+                System.out.println("Digite o nome da disciplina: ");
+                nomeDisciplina = entrada.nextLine();
+                try {
+                    sysMat.confereDisciplina(nomeDisciplina);
+                    sysMat.confereAlunoMatriculado(nomeAluno, nomeDisciplina);
+                } catch(Exception E) {
+                }
+ 
+            } while(false);
+            sysMat.matricularDisciplina(nomeAluno, nomeDisciplina);
+        }
         
-        entrada.nextLine();
-        System.out.println("Digite o nome do aluno: ");
-        String nomeAluno = entrada.nextLine();
-        
-        System.out.println("Digite o nome da disciplina: ");
-        String nomeDisciplina = entrada.nextLine();
-        
-        sysMat.matricularDisciplina(nomeAluno,nomeDisciplina);
     }
 
     private static void desmatricularAluno(SistemaMatricula sysMat) {

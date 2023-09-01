@@ -44,39 +44,47 @@ public class SistemaMatricula {
         }
     }
 
-    public void matricularDisciplina(String nome, String nomeDisciplina) {
-            
-
-        if(!confereDisciplina(((Aluno) usuarios.get(nome)), (disciplinas.get(nomeDisciplina)))){
-        try {
-            System.out.println("passei");
-            ((Aluno) usuarios.get(nome)).addDisciplinas(disciplinas.get(nomeDisciplina));
-        } catch (ClassCastException E) {
-            throw new ClassCastException("Você não pode adicionar");
-        }
-        } else {
-            System.out.println("O aluno já está matriculado nessa matéria");
-        }
-
-        System.out.println("nn passei");
-
+    public void matricularDisciplina(String nomeUsuario, String nomeDisciplina) {
+        Aluno aluno = (Aluno) filtrarUsuario(nomeUsuario);
+        disciplinas.get(nomeDisciplina).addAlunos(aluno);
     }
 
-    public void cancelarMatricula(String nome, String nomeDisciplina) {
+    public void cancelarMatricula(String nome, String nomeDisciplina) { //terminar
+        //disciplinas.get(nomeDisciplina).removeAlunos((Aluno) usuarios.get(nome));
+    }
 
-        if(!confereDisciplina(((Aluno) usuarios.get(nome)), (disciplinas.get(nomeDisciplina)))){        
-        try {
-            ((Aluno) usuarios.get(nome)).removeDisciplinas(disciplinas.get(nomeDisciplina));
-        } catch (ClassCastException E) {
-            throw new ClassCastException("Você não pode adicionar");
-        }
+
+    public boolean confereDisciplina(String disciplina) throws Exception {
+        if(!disciplinas.containsKey(disciplina)){
+            return true;
         } else {
-            System.out.println("O aluno não está matriculado nessa matéria");
+            throw new Exception();
         }
     }
 
-    public boolean confereDisciplina(Aluno aluno, Disciplina disciplina) {
-        return aluno.getDisciplinas().contains(disciplina);
+
+    public boolean confereAlunoMatriculado(String aluno, String disciplina) throws Exception {
+        if(!disciplinas.get(disciplina).getAlunos().contains(aluno)){
+            return true;
+        } else {
+            throw new Exception();
+        }
+    }
+
+    public boolean confereAluno(String aluno) throws Exception {
+        if(usuarios.containsKey(aluno)){
+            return true;
+        } else {
+            throw new Exception();
+        }
+    }
+
+    public Usuario filtrarUsuario(String nomeDeUsuario) {
+        return usuarios.get(nomeDeUsuario);
+    }
+
+    public Disciplina filtrarDisciplina(String nomeDisciplina) {
+        return disciplinas.get(nomeDisciplina);
     }
 
     public void notificarSistemaDeCobranca() {
