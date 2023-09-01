@@ -13,7 +13,7 @@ public class Aluno extends Usuario {
 
     @Override
     public String getDados(){
-        return "Aluno:" + getNome() + "\n";
+        return "A;" + getNome() + ";" + getSenha() + ";" + "\n";
     }
 
     @Override

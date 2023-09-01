@@ -31,7 +31,8 @@ public class Disciplina implements IObrigatorio, IAtivada,ISalvavel{
     }
 
 
-    public Disciplina(String nomeDisciplina, String idDisciplina) {
+    public Disciplina(String nomeDisciplina) {
+        setNome(nomeDisciplina);
     }
 
 
@@ -82,7 +83,7 @@ public class Disciplina implements IObrigatorio, IAtivada,ISalvavel{
 
     @Override
     public String getDados(){
-        return "D;" + getNome() + "\n";
+        return getNome() + ";" + getMaxAlunos() + ";" + getNome() + "\n";
     }
 
     @Override
