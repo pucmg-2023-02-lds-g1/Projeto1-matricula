@@ -297,12 +297,20 @@ public class SistemaMatricula {
     public String visualizarUsuarios() {
         StringBuilder sb = new StringBuilder();
         for (Map.Entry<String, Usuario> entry : usuarios.entrySet()) {
-            String key = entry.getKey();
             Usuario value = entry.getValue();
-            sb.append(value.getDados());
+            String tipo = value.getDados().split(";")[0];
+            if (tipo.equals("A")) {
+                tipo = "Aluno";
+            } else if (tipo.equals("P")) {
+                tipo = "Professor";
+            } else if (tipo.equals("S")) {
+                tipo = "Secretário";
+            }
+            sb.append(tipo + " --> " + value.getNome() + "\n");
         }
         return sb.toString();
     }
+    
 
     public void setObrigatoria(Disciplina disciplina) {
 
