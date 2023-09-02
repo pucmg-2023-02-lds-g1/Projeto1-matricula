@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
@@ -56,33 +57,27 @@ public class SistemaMatricula {
     }
 
     public boolean confereDisciplina(String disciplina) throws Exception {
-        if (disciplinas.containsKey(disciplina)) {
+        if (!disciplinas.containsKey(disciplina)) {
             return true;
         } else {
-            return false;
+            throw new Exception();
         }
     }
 
-    /*public boolean confereAlunoMatriculado(String nomeA, String nomeD) throws Exception {
+    public boolean confereAlunoMatriculado(String nomeA, String disciplina) throws Exception {
         Usuario aluno = usuarios.get(nomeA);
-        Disciplina disciplina = disciplinas.get(nomeD);
-
-        System.out.println(disciplina.getNome());
-
-
-        if (!disciplina.getAlunos().contains(aluno)) {
+        if (!disciplinas.get(disciplina).getAlunos().contains(aluno)) {
             return true;
         } else {
-            return false;
+            throw new Exception();
         }
-    }*/
+    }
 
     public boolean confereAluno(String aluno) throws Exception {
-
         if (usuarios.containsKey(aluno)) {
             return true;
         } else {
-            return false;
+            throw new Exception();
         }
     }
 
@@ -228,6 +223,8 @@ public class SistemaMatricula {
 
             BufferedReader reader = new BufferedReader(new FileReader(arqDisciplina));
             String linha;
+            List<Aluno> alunos = new LinkedList<Aluno>();
+            Aluno aluno;
 
             while ((linha = reader.readLine()) != null) {
 
@@ -235,6 +232,10 @@ public class SistemaMatricula {
                 String nomeDisciplina = str.nextToken();
                 int maxAlunos = Integer.parseInt(str.nextToken());
                 String nomeCurso = str.nextToken();
+                while(str.hasMoreTokens()){
+                    aluno = (Aluno) usuarios.get(str.nextToken());
+                    alunos.add(aluno);
+                }
 
                 Disciplina disciplina = new Disciplina(maxAlunos, nomeDisciplina, nomeCurso);
 
