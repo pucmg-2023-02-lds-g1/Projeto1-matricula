@@ -172,7 +172,7 @@ public class SistemaMatricula {
         if (!usuarios.containsKey(u.getNome())) {
             this.usuarios.put(u.getNome(), u);
         } else {
-            throw new UsuarioInvalidoException("Esse usuario já existe!");
+            throw new UsuarioInvalidoException();
         }
     }
 
@@ -180,7 +180,7 @@ public class SistemaMatricula {
         if (usuarios.containsKey(nomeUsuario)) {
             this.usuarios.remove(nomeUsuario);
         } else {
-            throw new UsuarioInvalidoException("Esse usuario não existe!");
+            throw new UsuarioInvalidoException();
         }
     }
 
