@@ -36,15 +36,9 @@ public class Disciplina implements IObrigatorio, IAtivada,ISalvavel{
     }
 
 
-    public Disciplina(String nomeDisciplina) {
+    public Disciplina(String nomeDisciplina) throws DisciplinaInvalidaException {
         setNome(nomeDisciplina);
     }
-
-
-    public void setAlunos(List<Aluno> alunos) {
-        Alunos = alunos;
-    }
-
 
     public IAtivada getAtivada() {
         return ativada;
@@ -61,8 +55,12 @@ public class Disciplina implements IObrigatorio, IAtivada,ISalvavel{
     }
 
 
-    public void setMaxAlunos(int maxAlunos) {
-        this.maxAlunos = maxAlunos;
+    public void setMaxAlunos(int maxAlunos) throws DisciplinaInvalidaException { //dddddddddddddddddddddddddddd
+        if(nome!=null) {
+            this.maxAlunos = maxAlunos;
+        } else {
+            throw new DisciplinaInvalidaException();
+        } 
     }
 
 
@@ -71,8 +69,12 @@ public class Disciplina implements IObrigatorio, IAtivada,ISalvavel{
     }
 
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setNome(String nome) throws DisciplinaInvalidaException { //dddddddddddddddddddddddddddd
+        if(nome!=null) {
+            this.nome = nome;
+        } else {
+            throw new DisciplinaInvalidaException();
+        }  
     }
 
 

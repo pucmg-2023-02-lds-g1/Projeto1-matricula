@@ -2,7 +2,7 @@ package business;
 
 public class Aluno extends Usuario {
 
-    Aluno(String nome, String senha) {
+    Aluno(String nome, String senha) throws UsuarioInvalidoException {
         super(nome, senha);
     }
     
