@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
@@ -222,6 +223,8 @@ public class SistemaMatricula {
 
             BufferedReader reader = new BufferedReader(new FileReader(arqDisciplina));
             String linha;
+            List<Aluno> alunos = new LinkedList<Aluno>();
+            Aluno aluno;
 
             while ((linha = reader.readLine()) != null) {
 
@@ -229,6 +232,10 @@ public class SistemaMatricula {
                 String nomeDisciplina = str.nextToken();
                 int maxAlunos = Integer.parseInt(str.nextToken());
                 String nomeCurso = str.nextToken();
+                while(str.hasMoreTokens()){
+                    aluno = (Aluno) usuarios.get(str.nextToken());
+                    alunos.add(aluno);
+                }
 
                 Disciplina disciplina = new Disciplina(maxAlunos, nomeDisciplina, nomeCurso);
 
