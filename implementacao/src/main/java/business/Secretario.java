@@ -1,7 +1,7 @@
 package business;
 public class Secretario extends Usuario{
     
-    Secretario(String nome,String senha){
+    Secretario(String nome,String senha) throws UsuarioInvalidoException{
         super(nome,senha);
     }
 

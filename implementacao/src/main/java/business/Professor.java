@@ -14,7 +14,7 @@ public class Professor extends Usuario {
         this.disciplinasLecionadas = disciplinasLecionadas;
     }
 
-    Professor(String nome, String senha) {
+    Professor(String nome, String senha) throws UsuarioInvalidoException {
         super(nome, senha);
 
     }

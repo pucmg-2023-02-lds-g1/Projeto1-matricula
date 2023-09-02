@@ -29,7 +29,7 @@ public class SistemaMatricula {
         this.disciplinas = disciplinas;
     }
 
-    public SistemaMatricula(String nome) {
+    public SistemaMatricula(String nome) throws UsuarioInvalidoException {
         carregarDisciplina();
         carregarUsuario();
         setNome(nome);
@@ -185,7 +185,7 @@ public class SistemaMatricula {
         }
     }
 
-    private void carregarUsuario() {
+    private void carregarUsuario() throws UsuarioInvalidoException {
         try {
 
             Usuario usuario;
