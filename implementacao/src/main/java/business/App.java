@@ -94,7 +94,7 @@ public class App {
 
     }
 
-    private static void menuUsuarioComum(SistemaMatricula sysMat) {
+    private static void menuAluno(SistemaMatricula sysMat) {
 
         try {
 
@@ -102,17 +102,16 @@ public class App {
             do {
                 System.out.println("Selecione uma opção:");
                 System.out.println("1 - Visualizar disciplinas");
-                System.out.println("2 - Visualizar sistema"); // Para um aluno, mostra as cobranças e para um professor
-                                                              // mostra os alunos
+                System.out.println("2 - Visualizar cobranças");
                 System.out.println("0 - Salvar dados");
                 opcao = entrada.nextInt();
                 entrada.nextLine();
                 switch (opcao) {
                     case 1:
-                        visualizarDisciplinas(sysMat);
+                        System.out.println(sysMat.visualizarDisciplinasAluno());
                         break;
                     case 2:
-                        visualizarSistema(sysMat);
+                        System.out.println(sysMat.visualizarCobranca());
                         break;
                     case 0:
                         sysMat.salvarDados();
@@ -126,22 +125,36 @@ public class App {
 
     }
 
-    public static void visualizarDisciplinas(SistemaMatricula sysMat){
-        if(sysMat.checkTipo() == "P"){
-            System.out.println(sysMat.visualizarDisciplinasLecionadas());
-        } else if(sysMat.checkTipo() == "A") {
-            System.out.println(sysMat.visualizarDisciplinasAluno());
-        }
-    }
+    private static void menuProfessor(SistemaMatricula sysMat) {
 
-    public static void visualizarSistema(SistemaMatricula sysMat){
-        if(sysMat.checkTipo() == "P"){
-            System.out.println(sysMat.visualizarAlunosDoProfessor());
-        } else if(sysMat.checkTipo() == "A") {
-            System.out.println(sysMat.visualizarCobranca());
-        }
-    }
+        try {
 
+            int opcao;
+            do {
+                System.out.println("Selecione uma opção:");
+                System.out.println("1 - Visualizar disciplinas lecionadas");
+                System.out.println("2 - Visualizar alunos");
+                System.out.println("0 - Salvar dados");
+                opcao = entrada.nextInt();
+                entrada.nextLine();
+                switch (opcao) {
+                    case 1:
+                        System.out.println(sysMat.visualizarDisciplinasLecionadas());
+                        break;
+                    case 2:
+                        System.out.println(sysMat.visualizarAlunosDoProfessor());
+                        break;
+                    case 0:
+                        sysMat.salvarDados();
+                        break;
+                }
+            } while (opcao != 0);
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+    }
 
     private static void excluirUsuario(SistemaMatricula sysMat) {
         System.out.println("Digite o nome do usuario que você quer excluir: ");
@@ -164,7 +177,7 @@ public class App {
         System.out.println("Essa disicplina é obrigatoria?(S/N) ");
         entrada.nextLine();
         String op = entrada.nextLine();
-        
+
         if (op.equals("S")) {
             sysMat.setObrigatoria(atual);
         }
@@ -227,10 +240,14 @@ public class App {
 
             sysMat.validarLogin(nomeUsuario, senha);
 
-            if(sysMat.checkTipo().equals("S")){
+            String tipoUsuario = sysMat.checkTipo();
+ 
+            if(tipoUsuario.equals("S")){
                 menuSecretario(sysMat);
-            } else {
-                menuUsuarioComum(sysMat);
+            } else if(tipoUsuario.equals("A")){
+                menuAluno(sysMat);
+            } else if (tipoUsuario.equals("P")){
+                menuProfessor(sysMat);
             }
             
         } catch (Exception e) { // Criar exceção
