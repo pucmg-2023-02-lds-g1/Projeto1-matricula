@@ -6,11 +6,6 @@ public class Aluno extends Usuario {
         super(nome, senha);
     }
     
-    public String visualizarCobranca(SistemaCobranca financeiro){
-
-        return financeiro.visualizaCobranca(getNome());
-    }
-
     @Override
     public String getDados(){
         return "A;" + getNome() + ";" + getSenha() + ";" + "\n";
