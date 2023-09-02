@@ -19,4 +19,10 @@ public class Secretario extends Usuario{
     public String getDados(){
         return "S;" + getNome() + ";" + getSenha() + ";" + "\n";
     }
+
+
+    @Override
+    public String getTipo() {
+        return "S";
+    }
 }

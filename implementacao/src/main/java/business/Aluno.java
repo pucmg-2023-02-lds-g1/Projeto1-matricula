@@ -20,4 +20,11 @@ public class Aluno extends Usuario {
     public String toString(){
         return ("Nome: "+getNome()+"\n");
     }
+
+    @Override
+    public String getTipo() {
+        return "A";
+    }
+
+    
 }
