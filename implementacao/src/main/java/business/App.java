@@ -10,7 +10,7 @@ public class App {
         try {
 
             SistemaMatricula sysMat = new SistemaMatricula("Sistema Matrícula");
-            // menu(sysMat);
+            menu(sysMat);
             menuSecretario(sysMat);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -29,6 +29,9 @@ public class App {
             switch (opcao) {
                 case 1:
                     fazerLogin(sysMat);
+                    break;
+                case 2:
+                    cadastroSecretario(sysMat);
                     break;
                 case 0:
                     sysMat.salvarDados();
@@ -92,37 +95,45 @@ public class App {
     }
 
     private static void menuUsuarioComum(SistemaMatricula sysMat) {
-        int opcao;
-        do {
-            System.out.println("Selecione uma opção:");
-            System.out.println("1 - Visualizar disciplinas");
-            System.out.println("2 - Visualizar sistema"); // Para um aluno, mostra as cobranças e para um professor
-                                                          // mostra os alunos
-            System.out.println("0 - Salvar dados");
-            opcao = entrada.nextInt();
-            entrada.nextLine();
-            switch (opcao) {
-                case 1:
-                    try {
-                        System.out.println(sysMat.visualizarDisciplinasAluno());
-                    } catch (Exception e) {
-                        System.out.println(sysMat.visualizarDisciplinasLecionadas());
-                    }
-                    break;
-                case 2:
-                    try {
-                        System.out.println("Chegou no visualizarCobranca()");
-                        System.out.println(sysMat.visualizarCobranca());
-                        System.out.println("Saiu do visualizarCobranca()");
-                    } catch (Exception e) {
-                        System.out.println(sysMat.visualizarAlunosDoProfessor());
-                    }
-                    break;
-                case 0:
-                    sysMat.salvarDados();
-                    break;
-            }
-        } while (opcao != 0);
+
+        try {
+
+            int opcao;
+            do {
+                System.out.println("Selecione uma opção:");
+                System.out.println("1 - Visualizar disciplinas");
+                System.out.println("2 - Visualizar sistema"); // Para um aluno, mostra as cobranças e para um professor
+                                                              // mostra os alunos
+                System.out.println("0 - Salvar dados");
+                opcao = entrada.nextInt();
+                entrada.nextLine();
+                switch (opcao) {
+                    case 1:
+                        if (!sysMat.visualizarDisciplinasAluno().contains("Não")) {
+                            System.out.println(sysMat.visualizarDisciplinasAluno());
+                        } else {
+                            System.out.println(sysMat.visualizarDisciplinasLecionadas());
+                        }
+                        break;
+                    case 2:
+                        try {
+                            System.out.println("Chegou no visualizarCobranca()");
+                            System.out.println(sysMat.visualizarCobranca());
+                            System.out.println("Saiu do visualizarCobranca()");
+                        } catch (Exception e) {
+                            System.out.println(sysMat.visualizarAlunosDoProfessor());
+                        }
+                        break;
+                    case 0:
+                        sysMat.salvarDados();
+                        break;
+                }
+            } while (opcao != 0);
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
     }
 
     private static void excluirUsuario(SistemaMatricula sysMat) {
@@ -151,6 +162,7 @@ public class App {
     }
 
     private static void cadastroUsuario(SistemaMatricula sysMat) {
+
         System.out.println("Digite 1 para cadastrar um aluno ou 2 para cadastrar um professor: ");
         int opcao = entrada.nextInt();
         entrada.nextLine();
@@ -171,6 +183,22 @@ public class App {
             } else {
                 System.out.println("Opção inválida!");
             }
+        } catch (UsuarioInvalidoException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private static void cadastroSecretario(SistemaMatricula sysMat) {
+
+        try {
+            entrada.nextLine();
+            System.out.println("Digite o nome: ");
+            String nome = entrada.nextLine();
+            System.out.println("Digite a senha: ");
+            String senha = entrada.nextLine();
+            
+            Secretario secretario = new Secretario(nome, senha);
+            sysMat.cadastro(secretario);
         } catch (UsuarioInvalidoException e) {
             System.out.println(e.getMessage());
         }
@@ -242,8 +270,6 @@ public class App {
             } catch (Exception E) {
             }
         } while (false);
-
-        
 
         do {
 
