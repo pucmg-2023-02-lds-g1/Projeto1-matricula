@@ -261,7 +261,7 @@ public class App {
     }
 
     private static void matricularAluno(SistemaMatricula sysMat) {
-        boolean condicao = true, condicao2 = true;
+        boolean condicao = true;//, condicao2 = true;
         String nomeAluno;
         String nomeDisciplina;
 
@@ -275,28 +275,27 @@ public class App {
         } while (!condicao);
 
         System.out.println("Digite o numero de materias em que o aluno será matriculado: ");
-        entrada.nextLine();
         int numMat = entrada.nextInt();
-
-        for (int i = 0; i == numMat; i++) {
+        entrada.nextLine();
+        for (int i = 0; i != numMat; i++) {
             do {
 
                 System.out.println("Digite o nome da disciplina: ");
                 nomeDisciplina = entrada.nextLine();
                 try {
                     condicao = sysMat.confereDisciplina(nomeDisciplina);
-                    condicao2 = sysMat.confereAlunoMatriculado(nomeAluno, nomeDisciplina);
+                    //condicao2 = sysMat.confereAlunoMatriculado(nomeAluno, nomeDisciplina);
                 } catch (Exception E) {
                 }
 
-            } while (!condicao||!condicao2);
+            } while (!condicao);
             sysMat.matricularDisciplina(nomeAluno, nomeDisciplina);
         }
 
     }
 
     private static void desmatricularAluno(SistemaMatricula sysMat) {
-        boolean condicao = true, condicao2 = true;
+        boolean condicao = true;//, condicao2 = true;
         String nomeAluno;
         String nomeDisciplina;
 
@@ -315,11 +314,11 @@ public class App {
             nomeDisciplina = entrada.nextLine();
             try {
                 condicao = sysMat.confereDisciplina(nomeDisciplina);             
-                condicao2 = sysMat.confereAlunoMatriculado(nomeAluno, nomeDisciplina);
+                //condicao2 = sysMat.confereAlunoMatriculado(nomeAluno, nomeDisciplina);
             } catch (Exception E) {
             }
 
-        } while (!condicao||!condicao2);
+        } while (!condicao);
 
         sysMat.cancelarMatricula(nomeAluno, nomeDisciplina);
     }

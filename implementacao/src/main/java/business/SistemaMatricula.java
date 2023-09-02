@@ -56,27 +56,33 @@ public class SistemaMatricula {
     }
 
     public boolean confereDisciplina(String disciplina) throws Exception {
-        if (!disciplinas.containsKey(disciplina)) {
+        if (disciplinas.containsKey(disciplina)) {
             return true;
         } else {
-            throw new Exception();
+            return false;
         }
     }
 
-    public boolean confereAlunoMatriculado(String nomeA, String disciplina) throws Exception {
+    /*public boolean confereAlunoMatriculado(String nomeA, String nomeD) throws Exception {
         Usuario aluno = usuarios.get(nomeA);
-        if (!disciplinas.get(disciplina).getAlunos().contains(aluno)) {
+        Disciplina disciplina = disciplinas.get(nomeD);
+
+        System.out.println(disciplina.getNome());
+
+
+        if (!disciplina.getAlunos().contains(aluno)) {
             return true;
         } else {
-            throw new Exception();
+            return false;
         }
-    }
+    }*/
 
     public boolean confereAluno(String aluno) throws Exception {
+
         if (usuarios.containsKey(aluno)) {
             return true;
         } else {
-            throw new Exception();
+            return false;
         }
     }
 
