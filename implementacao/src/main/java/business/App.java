@@ -65,7 +65,7 @@ public class App {
                     cadastroDisciplina(sysMat);
                     break;
                 case 4:
-                    System.out.println(sysMat.visualizarDisciplinas());
+                    System.out.println(sysMat.visualizarDisciplinasAluno());
                     break;
                 case 5:
                     System.out.println(sysMat.visualizarUsuarios());
@@ -91,7 +91,7 @@ public class App {
 
     }
 
-    private static void menuUsuarioComum(SistemaMatricula sysMat, Usuario usuarioAtual) {
+    private static void menuUsuarioComum(SistemaMatricula sysMat) {
         int opcao;
         do {
             System.out.println("Selecione uma opção:");
@@ -104,22 +104,18 @@ public class App {
             switch (opcao) {
                 case 1:
                     try {
-                        Usuario usuario = (Aluno) usuarioAtual;
-                        System.out.println(sysMat.visualizarDisciplinas(usuario.getNome()));
+                        System.out.println(sysMat.visualizarDisciplinasAluno());
                     } catch (Exception e) {
-                        Usuario usuario = (Professor) usuarioAtual;
-                        System.out.println(sysMat.visualizarDisciplinasLecionadas(usuario.getNome()));
+                        System.out.println(sysMat.visualizarDisciplinasLecionadas());
                     }
                     break;
                 case 2:
                     try {
-                        Usuario usuario = (Aluno) usuarioAtual;
                         System.out.println("Chegou no visualizarCobranca()");
                         System.out.println(sysMat.visualizarCobranca());
                         System.out.println("Saiu do visualizarCobranca()");
                     } catch (Exception e) {
-                        Usuario usuario = (Professor) usuarioAtual;
-                        System.out.println(sysMat.visualizarAlunosDoProfessor(usuario.getNome()));
+                        System.out.println(sysMat.visualizarAlunosDoProfessor());
                     }
                     break;
                 case 0:
@@ -191,8 +187,8 @@ public class App {
         String senha = entrada.nextLine();
 
         try {
-            Usuario usuarioAtual = sysMat.validarLogin(nomeUsuario, senha);
-            menuUsuarioComum(sysMat, usuarioAtual);
+            sysMat.validarLogin(nomeUsuario, senha);
+            menuUsuarioComum(sysMat);
         } catch (Exception e) { // Criar exceção
             System.out.println(e.getMessage());
         }
