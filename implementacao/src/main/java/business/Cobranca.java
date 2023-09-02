@@ -33,7 +33,7 @@ public class Cobranca {
     }
 
     public String formataDados(){
-        return getDescricao() + getPreco();
+        return getDescricao() + "\n" + getPreco();
     }
 
     
