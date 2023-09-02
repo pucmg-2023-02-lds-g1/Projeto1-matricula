@@ -258,7 +258,7 @@ public class App {
     }
 
     private static void matricularAluno(SistemaMatricula sysMat) {
-
+        boolean condicao = true, condicao2 = true;
         String nomeAluno;
         String nomeDisciplina;
 
@@ -266,10 +266,10 @@ public class App {
             System.out.println("Digite o nome do aluno: ");
             nomeAluno = entrada.nextLine();
             try {
-                sysMat.confereAluno(nomeAluno);
+                condicao = sysMat.confereAluno(nomeAluno);
             } catch (Exception E) {
             }
-        } while (false);
+        } while (!condicao);
 
         System.out.println("Digite o numero de materias em que o aluno será matriculado: ");
         entrada.nextLine();
@@ -281,19 +281,19 @@ public class App {
                 System.out.println("Digite o nome da disciplina: ");
                 nomeDisciplina = entrada.nextLine();
                 try {
-                    sysMat.confereDisciplina(nomeDisciplina);
-                    sysMat.confereAlunoMatriculado(nomeAluno, nomeDisciplina);
+                    condicao = sysMat.confereDisciplina(nomeDisciplina);
+                    condicao2 = sysMat.confereAlunoMatriculado(nomeAluno, nomeDisciplina);
                 } catch (Exception E) {
                 }
 
-            } while (false);
+            } while (!condicao||!condicao2);
             sysMat.matricularDisciplina(nomeAluno, nomeDisciplina);
         }
 
     }
 
     private static void desmatricularAluno(SistemaMatricula sysMat) {
-
+        boolean condicao = true, condicao2 = true;
         String nomeAluno;
         String nomeDisciplina;
 
@@ -301,22 +301,22 @@ public class App {
             System.out.println("Digite o nome do aluno: ");
             nomeAluno = entrada.nextLine();
             try {
-                sysMat.confereAluno(nomeAluno);
+                condicao = sysMat.confereAluno(nomeAluno);
             } catch (Exception E) {
             }
-        } while (false);
+        } while (!condicao);
 
         do {
 
             System.out.println("Digite o nome da disciplina: ");
             nomeDisciplina = entrada.nextLine();
             try {
-                sysMat.confereDisciplina(nomeDisciplina);
-                sysMat.confereAlunoMatriculado(nomeAluno, nomeDisciplina);
+                condicao = sysMat.confereDisciplina(nomeDisciplina);             
+                condicao2 = sysMat.confereAlunoMatriculado(nomeAluno, nomeDisciplina);
             } catch (Exception E) {
             }
 
-        } while (false);
+        } while (!condicao||!condicao2);
 
         sysMat.cancelarMatricula(nomeAluno, nomeDisciplina);
     }
