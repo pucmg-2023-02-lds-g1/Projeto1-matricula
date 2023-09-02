@@ -11,7 +11,6 @@ public class App {
 
             SistemaMatricula sysMat = new SistemaMatricula("Sistema Matrícula");
             menu(sysMat);
-            menuSecretario(sysMat);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -23,6 +22,7 @@ public class App {
         do {
             System.out.println("Selecione uma opção:");
             System.out.println("1 - Fazer login");
+            System.out.println("2 - Cadastrar um secretário");
             System.out.println("0 - Salvar dados");
             opcao = entrada.nextInt();
             entrada.nextLine();
@@ -196,7 +196,7 @@ public class App {
             String nome = entrada.nextLine();
             System.out.println("Digite a senha: ");
             String senha = entrada.nextLine();
-            
+
             Secretario secretario = new Secretario(nome, senha);
             sysMat.cadastro(secretario);
         } catch (UsuarioInvalidoException e) {
@@ -206,17 +206,23 @@ public class App {
 
     private static void fazerLogin(SistemaMatricula sysMat) {
 
-        System.out.println("Opção 1 selecionada.");
-
-        System.out.println("Insira o nome de usuario:");
-        String nomeUsuario = entrada.nextLine();
-
-        System.out.println("Insira a senha:");
-        String senha = entrada.nextLine();
-
         try {
+            System.out.println("Opção 1 selecionada.");
+
+            System.out.println("Insira o nome de usuario:");
+            String nomeUsuario = entrada.nextLine();
+
+            System.out.println("Insira a senha:");
+            String senha = entrada.nextLine();
+
             sysMat.validarLogin(nomeUsuario, senha);
-            menuUsuarioComum(sysMat);
+
+            if(sysMat.checkTipo().equals("S")){
+                menuSecretario(sysMat);
+            } else {
+                menuUsuarioComum(sysMat);
+            }
+            
         } catch (Exception e) { // Criar exceção
             System.out.println(e.getMessage());
         }

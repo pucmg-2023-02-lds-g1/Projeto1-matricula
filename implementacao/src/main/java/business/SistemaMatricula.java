@@ -313,4 +313,8 @@ public class SistemaMatricula {
         disciplina.setObrigatoria(new Disciplina(20, "a"));
     }
 
+    public String checkTipo(){
+        return usuarioAtual.getTipo();
+    }
+
 }

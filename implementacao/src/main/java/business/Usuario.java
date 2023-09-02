@@ -26,4 +26,6 @@ public abstract class Usuario implements ISalvavel {
     }
 
     public abstract String getDados();
+
+    public abstract String getTipo();
 }
