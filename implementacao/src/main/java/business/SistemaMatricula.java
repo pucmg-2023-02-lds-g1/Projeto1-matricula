@@ -63,7 +63,8 @@ public class SistemaMatricula {
         }
     }
 
-    public boolean confereAlunoMatriculado(String aluno, String disciplina) throws Exception {
+    public boolean confereAlunoMatriculado(String nomeA, String disciplina) throws Exception {
+        Usuario aluno = usuarios.get(nomeA);
         if (!disciplinas.get(disciplina).getAlunos().contains(aluno)) {
             return true;
         } else {
@@ -291,7 +292,7 @@ public class SistemaMatricula {
     public String visualizarCobranca() {
 
         try {
-            return ((Aluno) usuarioAtual).visualizarCobranca(financeiro);
+            return financeiro.visualizaCobranca(usuarioAtual.getNome());
         } catch (ClassCastException E) {
             throw new ClassCastException("Você não pode ver as cobranças porque você não é um aluno");
         }
