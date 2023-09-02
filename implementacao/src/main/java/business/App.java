@@ -174,9 +174,12 @@ public class App {
         System.out.println("Digite o maximo de alunos desse disciplina: ");
         int maxAlunos = entrada.nextInt();
 
-        Disciplina atual = sysMat.criarDisciplina(nomeDisciplina, maxAlunos);
-        System.out.println("Essa disicplina é obrigatoria?(S/N) ");
         entrada.nextLine();
+        System.out.println("Digite o nome do curso: ");
+        String nomeCurso = entrada.nextLine();
+
+        Disciplina atual = sysMat.criarDisciplina(nomeDisciplina, maxAlunos, nomeCurso);
+        System.out.println("Essa disicplina é obrigatoria?(S/N) ");
         String op = entrada.nextLine();
 
         if (op.equals("S")) {

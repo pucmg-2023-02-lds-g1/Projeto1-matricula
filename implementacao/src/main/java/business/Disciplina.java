@@ -8,17 +8,22 @@ public class Disciplina implements IObrigatorio, IAtivada,ISalvavel{
     private String nome;
     private IAtivada ativada;
     private IObrigatorio obrigatoria=null;
-
+    private Curso curso;
+    private String nomeCurso;
 
     public List<Aluno> getAlunos() {
         return Alunos;
     }
 
+    public String getNomeCurso(){
+        return this.nomeCurso;
+    }
 
-    public Disciplina(int maxAlunos, String nome) {
+
+    public Disciplina(int maxAlunos, String nome, String nomeCurso) {
         this.maxAlunos = maxAlunos;
         this.nome = nome;
-        
+        this.nomeCurso = nomeCurso;
     }
 
 
@@ -80,10 +85,9 @@ public class Disciplina implements IObrigatorio, IAtivada,ISalvavel{
         this.obrigatoria = obrigatoria;
     }
 
-
     @Override
     public String getDados(){
-        return getNome() + ";" + getMaxAlunos() + ";" + getNome() + "\n";
+        return getNome() + ";" + getMaxAlunos() + ";" + getNomeCurso() + "\n";
     }
 
     @Override

@@ -5,7 +5,7 @@ public class Curso {
     private String nome;
     private int creditos;
     private List<Disciplina> diciplinas;
-
+    private Curso curso;
 
     public String getNome() {
         return nome;

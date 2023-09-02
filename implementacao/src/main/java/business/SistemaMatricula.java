@@ -230,7 +230,7 @@ public class SistemaMatricula {
                 int maxAlunos = Integer.parseInt(str.nextToken());
                 String nomeCurso = str.nextToken();
 
-                Disciplina disciplina = new Disciplina(maxAlunos, nomeDisciplina);
+                Disciplina disciplina = new Disciplina(maxAlunos, nomeDisciplina, nomeCurso);
 
                 disciplinas.put(nomeCurso, disciplina);
             }
@@ -242,8 +242,8 @@ public class SistemaMatricula {
         }
     }
 
-    public Disciplina criarDisciplina(String nome, int maxAlunos) {
-        Disciplina atual = new Disciplina(maxAlunos, nome);
+    public Disciplina criarDisciplina(String nome, int maxAlunos, String nomeCurso) {
+        Disciplina atual = new Disciplina(maxAlunos, nome, nomeCurso);
         this.getDisciplinas().put(nome, atual);
         return atual;
     }
@@ -319,7 +319,7 @@ public class SistemaMatricula {
 
     public void setObrigatoria(Disciplina disciplina) {
 
-        disciplina.setObrigatoria(new Disciplina(20, "a"));
+        disciplina.setObrigatoria(new Disciplina(20, "a", "nomeCurso"));
     }
 
     public String checkTipo(){

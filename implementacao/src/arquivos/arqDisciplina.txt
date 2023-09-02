@@ -1,2 +1,2 @@
-Disciplina1;10;Disciplina1
-Disciplina3;100;Disciplina3
+Teste2;100;Curso legal
+teste;100;Curso legal
