@@ -104,29 +104,27 @@ public class SistemaMatricula {
         return resultado.toString();
     }
 
-    public String visualizarDisciplinas(String nomeAluno) {
+    public String visualizarDisciplinasAluno() {
         String hashVazio = "Não existem disciplinas registradas \n";
         StringBuilder resultado = new StringBuilder();
         HashMap<String, Disciplina> disciplinas = this.getDisciplinas();
-        Usuario aluno = usuarios.get(nomeAluno);
         Disciplina disciplinaComparada;
         if (disciplinas.size() == 0) {
             return hashVazio;
         }
         for (Map.Entry<String, Disciplina> atual : disciplinas.entrySet()) {
             disciplinaComparada = atual.getValue();
-            if (disciplinaComparada.getAlunos().contains(aluno)) {
+            if (disciplinaComparada.getAlunos().contains(usuarioAtual)) {
                 resultado.append(disciplinaComparada.toString());
             }
         }
         return resultado.toString();
     }
 
-    public String visualizarDisciplinasLecionadas(String nomeProfessor) {
+    public String visualizarDisciplinasLecionadas() {
         String listaVazia = "Esse professor não leciona disciplinas no momento \n";
         StringBuilder resultado = new StringBuilder();
-        Usuario professor = usuarios.get(nomeProfessor);
-        List<Disciplina> disciplinas = ((Professor) professor).getDisciplinasLecionadas();
+        List<Disciplina> disciplinas = ((Professor) usuarioAtual).getDisciplinasLecionadas();
         if (disciplinas.size() == 0) {
             return listaVazia;
         }
@@ -136,10 +134,10 @@ public class SistemaMatricula {
         return resultado.toString();
     }
 
-    public String visualizarAlunosDoProfessor(String nomeProfessor) {
+    public String visualizarAlunosDoProfessor() {
         String listaVazia = "Esse professor não leciona disciplinas no momento \n";
         StringBuilder resultado = new StringBuilder();
-        Professor Professor = (Professor) usuarios.get(nomeProfessor);
+        Professor Professor = (Professor) usuarioAtual;
         if (Professor.getDisciplinasLecionadas().size() == 0) {
             return listaVazia;
         }
@@ -150,7 +148,7 @@ public class SistemaMatricula {
         return resultado.toString();
     }
 
-    public Usuario validarLogin(String nome, String senha) throws Exception {
+    public boolean validarLogin(String nome, String senha) throws Exception {
         usuarioAtual = usuarios.get(nome);
         if (usuarioAtual == null) {
             throw new Exception("Login incorreto!");// Criar exceção específica
@@ -159,7 +157,7 @@ public class SistemaMatricula {
             this.usuarioAtual = null;
             throw new Exception("Senha incorreta!");// Criar exceção específica
         }
-        return usuarioAtual;
+        return true;
     }
 
     public void cadastro(Usuario u) throws UsuarioInvalidoException {
