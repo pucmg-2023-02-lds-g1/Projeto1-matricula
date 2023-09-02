@@ -161,6 +161,7 @@ public class App {
         String nome = entrada.nextLine();
         try {
             sysMat.excluirUsuario(nome);
+            System.out.println("Usuario ("+ nome +") excluido com sucesso.");
         } catch (UsuarioInvalidoException e) {
             System.out.println(e.getMessage());
         }
