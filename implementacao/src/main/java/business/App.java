@@ -109,20 +109,10 @@ public class App {
                 entrada.nextLine();
                 switch (opcao) {
                     case 1:
-                        if (!sysMat.visualizarDisciplinasAluno().contains("Não")) {
-                            System.out.println(sysMat.visualizarDisciplinasAluno());
-                        } else {
-                            System.out.println(sysMat.visualizarDisciplinasLecionadas());
-                        }
+                        visualizarDisciplinas(sysMat);
                         break;
                     case 2:
-                        try {
-                            System.out.println("Chegou no visualizarCobranca()");
-                            System.out.println(sysMat.visualizarCobranca());
-                            System.out.println("Saiu do visualizarCobranca()");
-                        } catch (Exception e) {
-                            System.out.println(sysMat.visualizarAlunosDoProfessor());
-                        }
+                        visualizarSistema(sysMat);
                         break;
                     case 0:
                         sysMat.salvarDados();
@@ -135,6 +125,23 @@ public class App {
         }
 
     }
+
+    public static void visualizarDisciplinas(SistemaMatricula sysMat){
+        if(sysMat.checkTipo() == "P"){
+            System.out.println(sysMat.visualizarDisciplinasLecionadas());
+        } else if(sysMat.checkTipo() == "A") {
+            System.out.println(sysMat.visualizarDisciplinasAluno());
+        }
+    }
+
+    public static void visualizarSistema(SistemaMatricula sysMat){
+        if(sysMat.checkTipo() == "P"){
+            System.out.println(sysMat.visualizarAlunosDoProfessor());
+        } else if(sysMat.checkTipo() == "A") {
+            System.out.println(sysMat.visualizarCobranca());
+        }
+    }
+
 
     private static void excluirUsuario(SistemaMatricula sysMat) {
         System.out.println("Digite o nome do usuario que você quer excluir: ");
@@ -149,12 +156,15 @@ public class App {
     private static void cadastroDisciplina(SistemaMatricula sysMat) {
         System.out.println("Digite o nome da disciplina: ");
         String nomeDisciplina = entrada.nextLine();
+
         System.out.println("Digite o maximo de alunos desse disciplina: ");
         int maxAlunos = entrada.nextInt();
+
         Disciplina atual = sysMat.criarDisciplina(nomeDisciplina, maxAlunos);
         System.out.println("Essa disicplina é obrigatoria?(S/N) ");
         entrada.nextLine();
         String op = entrada.nextLine();
+        
         if (op.equals("S")) {
             sysMat.setObrigatoria(atual);
         }
