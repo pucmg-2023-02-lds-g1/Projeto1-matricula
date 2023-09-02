@@ -47,6 +47,7 @@ public class SistemaMatricula {
     public void matricularDisciplina(String nomeUsuario, String nomeDisciplina) {
         Aluno aluno = (Aluno) filtrarUsuario(nomeUsuario);
         disciplinas.get(nomeDisciplina).addAlunos(aluno);
+        notificarSistemaDeCobranca(nomeUsuario);
     }
 
     public void cancelarMatricula(String nomeUsuario, String nomeDisciplina) {
@@ -86,9 +87,11 @@ public class SistemaMatricula {
         return disciplinas.get(nomeDisciplina);
     }
 
-    public void notificarSistemaDeCobranca() {
+    public void notificarSistemaDeCobranca(String nome) {
 
-        financeiro.emitirCobranca(usuarioAtual.getNome(), arqDisciplina, null);
+        long qtdDisc = calcQtdDisciplinas(nome);
+        Double preco = qtdDisc * 100.0;
+        financeiro.emitirCobranca(nome, "Boleto do aluno(a)" + nome, preco);
     }
 
     public String visualizarAlunos(String nomeDisciplina) {
@@ -322,4 +325,13 @@ public class SistemaMatricula {
         return usuarioAtual.getTipo();
     }
 
+
+    public long calcQtdDisciplinas(String nome){
+
+        Usuario aluno = usuarios.get(nome);
+        return disciplinas.values()
+        .stream()
+        .filter(d -> d.getAlunos().contains(aluno))
+        .count();
+    }
 }
