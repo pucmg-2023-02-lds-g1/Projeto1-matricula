@@ -272,6 +272,7 @@ public class App {
         } while (false);
 
         System.out.println("Digite o numero de materias em que o aluno será matriculado: ");
+        entrada.nextLine();
         int numMat = entrada.nextInt();
 
         for (int i = 0; i == numMat; i++) {

@@ -8,9 +8,18 @@ public class SistemaCobranca {
 
    public void emitirCobranca(String nomeAluno, String desc, Double preco) {
 
-      Cobranca c = new Cobranca(desc, preco);
-      cobrancas.put(nomeAluno, c);
+      if (cobrancas.containsKey(nomeAluno)) {
+         Cobranca cobranca = cobrancas.remove(nomeAluno);
+         cobranca.setPreco(preco);
+         cobrancas.put(nomeAluno, cobranca);
+
+      } else {
+         Cobranca c = new Cobranca(desc, preco);
+         cobrancas.put(nomeAluno, c);
+      }
+
    }
+   
 
    public String visualizaCobranca(String nomeAluno) {
 
