@@ -104,6 +104,7 @@ public class SistemaMatricula {
         return resultado.toString();
     }
 
+    //revisar repeticao
     public String visualizarDisciplinasAluno() {
         String hashVazio = "Não existem disciplinas registradas \n";
         StringBuilder resultado = new StringBuilder();
@@ -120,6 +121,8 @@ public class SistemaMatricula {
         return resultado.toString();
     }
 
+
+    //revisar repeticao
     public String visualizarDisciplinasLecionadas() {
         String listaVazia = "Esse professor não leciona disciplinas no momento \n";
         StringBuilder resultado = new StringBuilder();
@@ -133,6 +136,8 @@ public class SistemaMatricula {
         return resultado.toString();
     }
 
+
+    //revisar repeticao
     public String visualizarAlunosDoProfessor() {
         String listaVazia = "Esse professor não leciona disciplinas no momento \n";
         StringBuilder resultado = new StringBuilder();
