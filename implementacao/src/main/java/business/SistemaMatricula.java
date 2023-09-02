@@ -107,7 +107,6 @@ public class SistemaMatricula {
     public String visualizarDisciplinasAluno() {
         String hashVazio = "Não existem disciplinas registradas \n";
         StringBuilder resultado = new StringBuilder();
-        HashMap<String, Disciplina> disciplinas = this.getDisciplinas();
         Disciplina disciplinaComparada;
         if (disciplinas.size() == 0) {
             return hashVazio;
@@ -243,7 +242,6 @@ public class SistemaMatricula {
     public String visualizarDisciplinas() {
         String hashVazio = "Não existem disciplinas registradas \n";
         StringBuilder resultado = new StringBuilder();
-        HashMap<String, Disciplina> disciplinas = this.getDisciplinas();
         if (disciplinas.size() == 0) {
             return hashVazio;
         }
