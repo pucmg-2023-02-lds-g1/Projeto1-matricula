@@ -299,7 +299,7 @@ public class SistemaMatricula {
         StringBuilder sb = new StringBuilder();
         for (Map.Entry<String, Usuario> entry : usuarios.entrySet()) {
             Usuario value = entry.getValue();
-            String tipo = value.getDados().split(";")[0];
+            String tipo = value.getTipo();
             if (tipo.equals("A")) {
                 tipo = "Aluno";
             } else if (tipo.equals("P")) {
