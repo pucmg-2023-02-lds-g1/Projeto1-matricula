@@ -1,2 +1,3 @@
 Teste2;100;Curso legal
 teste;100;Curso legal
+

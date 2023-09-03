@@ -46,8 +46,14 @@ public class SistemaMatricula {
     }
 
     public void matricularDisciplina(String nomeUsuario, String nomeDisciplina) {
-        Aluno aluno = (Aluno) filtrarUsuario(nomeUsuario);
-        disciplinas.get(nomeDisciplina).addAlunos(aluno);
+        //System.out.println(nomeUsuario);
+        //System.out.println(nomeDisciplina);
+        Aluno aluno = (Aluno)filtrarUsuario(nomeUsuario);
+        //System.out.println(aluno);
+        //System.out.println("xxxxxxxxxxxxxxxx");
+        Disciplina disciplina = filtrarDisciplina(nomeDisciplina);
+        //System.out.println(disciplina);
+        disciplina.addAlunos(aluno);
         notificarSistemaDeCobranca(nomeUsuario);
     }
 
@@ -239,7 +245,7 @@ public class SistemaMatricula {
 
                 Disciplina disciplina = new Disciplina(maxAlunos, nomeDisciplina, nomeCurso);
 
-                disciplinas.put(nomeCurso, disciplina);
+                disciplinas.put(nomeDisciplina, disciplina);
             }
             reader.close();
         } catch (FileNotFoundException e) {
