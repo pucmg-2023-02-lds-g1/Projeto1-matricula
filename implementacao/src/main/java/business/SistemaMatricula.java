@@ -249,15 +249,17 @@ public class SistemaMatricula {
                 String nomeDisciplina = str.nextToken();
                 int maxAlunos = Integer.parseInt(str.nextToken());
                 String nomeCurso = str.nextToken();
-                while(str.hasMoreTokens()){
-                    aluno = (Aluno) usuarios.get(str.nextToken());
+                while(str.hasMoreTokens()){    
+                    aluno = (Aluno) usuarios.get(str.nextToken());  
                     alunos.add(aluno);
                 }
 
-                Disciplina disciplina = new Disciplina(maxAlunos, nomeDisciplina, nomeCurso);
-
+                Disciplina disciplina = new Disciplina(maxAlunos, nomeDisciplina, nomeCurso, alunos);
                 disciplinas.put(nomeDisciplina, disciplina);
+
+                alunos.clear(); 
             }
+            
             reader.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -265,6 +267,7 @@ public class SistemaMatricula {
             e.printStackTrace();
         }
     }
+
 
     public Disciplina criarDisciplina(String nome, int maxAlunos, String nomeCurso) {
         Disciplina atual = new Disciplina(maxAlunos, nome, nomeCurso);
