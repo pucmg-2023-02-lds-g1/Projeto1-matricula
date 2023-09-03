@@ -119,7 +119,7 @@ public class App {
                 }
             } while (opcao != 0);
 
-        } catch (Exception e) {
+        } catch (CobrancaInvalidaException e) {
             System.out.println(e.getMessage());
         }
 

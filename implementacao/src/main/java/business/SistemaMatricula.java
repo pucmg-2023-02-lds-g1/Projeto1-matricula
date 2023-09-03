@@ -324,7 +324,7 @@ public class SistemaMatricula {
         escreveArqDisciplina();
     }
 
-    public String visualizarCobranca() {
+    public String visualizarCobranca() throws CobrancaInvalidaException, ClassCastException {
 
         try {
             return financeiro.visualizaCobranca(usuarioAtual.getNome());

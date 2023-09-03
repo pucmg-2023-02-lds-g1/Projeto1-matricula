@@ -21,9 +21,15 @@ public class SistemaCobranca {
    }
    
 
-   public String visualizaCobranca(String nomeAluno) {
+   public String visualizaCobranca(String nomeAluno) throws CobrancaInvalidaException{
 
-      return cobrancas.get(nomeAluno).formataDados();
+      if (cobrancas.containsKey(nomeAluno)){
+         return cobrancas.get(nomeAluno).formataDados();
+      }else{
+         throw new CobrancaInvalidaException();
+      }
+       
+      
    }
 
 }
