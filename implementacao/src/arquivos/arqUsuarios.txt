@@ -1,8 +1,8 @@
 A;Aluno2;aluno123;
-P;lucas;monte;
+P;lucas;monte;;
 A;Aluno1;aluno123;
 S;Sheldon;123;
 A;ALunoLegal;ALunoLegal;
-P;Professor1;Professor123;
+P;Professor1;Professor123;teste;;
 A;vagner;000;
-P;Professor2;professor123;
+P;Professor2;professor123;;

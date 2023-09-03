@@ -22,9 +22,19 @@ public class Professor extends Usuario {
         super(nome, senha);
     }
 
+    public String getDisciplinasString() {
+
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < disciplinasLecionadas.size(); i++) {
+            sb.append(disciplinasLecionadas.get(i).getNome());
+            sb.append(";");
+        }
+        return sb.toString();
+    }
+
     @Override
     public String getDados() {
-        return "P;" + getNome() + ";" + getSenha() + ";" + "\n";
+        return "P;" + getNome() + ";" + getSenha() + ";" + getDisciplinasString() + ";" + "\n";
     }
 
     @Override
