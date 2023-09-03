@@ -10,17 +10,20 @@ public class Professor extends Usuario {
         return disciplinasLecionadas;
     }
 
-    public void setDisciplinasLecionadas(List<Disciplina> disciplinasLecionadas) {
-        this.disciplinasLecionadas = disciplinasLecionadas;
+    public void addDisciplina(Disciplina disciplina) {
+        this.disciplinasLecionadas.add(disciplina);
+    }
+
+    public void removeDisciplina(Disciplina disciplina) {
+        this.disciplinasLecionadas.remove(disciplina);
     }
 
     Professor(String nome, String senha) throws UsuarioInvalidoException {
         super(nome, senha);
-
     }
 
     @Override
-    public String getDados(){
+    public String getDados() {
         return "P;" + getNome() + ";" + getSenha() + ";" + "\n";
     }
 
@@ -29,5 +32,4 @@ public class Professor extends Usuario {
         return "P";
     }
 
-    
 }
