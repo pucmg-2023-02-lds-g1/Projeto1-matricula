@@ -1,6 +1,6 @@
 package business;
 
-public class Cobranca {
+public class Cobranca implements ISalvavel {
 
     private String descricao;
     private Double preco;
@@ -35,6 +35,12 @@ public class Cobranca {
     public String formataDados(){
 
         return getDescricao() + "\n" + getPreco();
+    }
+
+
+    @Override
+    public String getDados() {
+        return getDescricao() + ";" + getPreco() + ";" + "\n";
     }
 
     

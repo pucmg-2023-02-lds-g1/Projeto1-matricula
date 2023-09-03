@@ -10,7 +10,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
-import java.util.Map.Entry;
 
 public class SistemaMatricula {
 
@@ -18,6 +17,7 @@ public class SistemaMatricula {
     private Usuario usuarioAtual;
     private static final String arqUsuario = "implementacao\\src\\arquivos\\arqUsuarios.txt";
     private static final String arqDisciplina = "implementacao\\src\\arquivos\\arqDisciplina.txt";
+    private static final String arqCobranca = "implementacao\\src\\arquivos\\arqCobranca.txt";
     private SistemaCobranca financeiro = new SistemaCobranca();
     private HashMap<String, Usuario> usuarios = new HashMap<>();
     private HashMap<String, Disciplina> disciplinas = new HashMap<>();
@@ -33,6 +33,7 @@ public class SistemaMatricula {
     public SistemaMatricula(String nome) throws UsuarioInvalidoException {
         carregarUsuario();
         carregarDisciplina();
+        carregarCobranca();
         setNome(nome);
     }
 
@@ -100,7 +101,7 @@ public class SistemaMatricula {
 
         long qtdDisc = calcQtdDisciplinas(nome);
         Double preco = qtdDisc * 100.0;
-        financeiro.emitirCobranca(nome, "Boleto do aluno(a)" + nome, preco);
+        financeiro.emitirCobranca(nome, nome, preco);
     }
 
     public String visualizarAlunos(String nomeDisciplina) {
@@ -272,6 +273,32 @@ public class SistemaMatricula {
         }
     }
 
+    private void carregarCobranca() {
+        try {
+
+            BufferedReader reader = new BufferedReader(new FileReader(arqDisciplina));
+            String linha;
+
+            while ((linha = reader.readLine()) != null) {
+
+                StringTokenizer str = new StringTokenizer(linha, ";");
+                String descCobranca = str.nextToken();
+                double preco = Double.parseDouble(str.nextToken());
+                String nomeAluno = str.nextToken();
+
+                Cobranca cobranca = new Cobranca(descCobranca, preco);
+                financeiro.addCobrancas(nomeAluno, cobranca);;
+            }
+            
+            
+            reader.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     public Disciplina criarDisciplina(String nome, int maxAlunos, String nomeCurso) {
         Disciplina atual = new Disciplina(maxAlunos, nome, nomeCurso);
@@ -315,9 +342,14 @@ public class SistemaMatricula {
         escreveArquivo(disciplinas, arqDisciplina);
     }
 
+    private void escreveArqCobranca() {
+        escreveArquivo(financeiro.getCobrancas(), arqCobranca);
+    }
+
     public void salvarDados() {
         escreveArqUsuario();
         escreveArqDisciplina();
+        escreveArqCobranca();
     }
 
     public String visualizarCobranca() throws CobrancaInvalidaException, ClassCastException {
