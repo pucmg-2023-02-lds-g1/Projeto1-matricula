@@ -75,7 +75,6 @@ public class SistemaMatricula {
     public boolean confereAlunoMatriculado(String nomeA, String disciplina) throws Exception {
         Usuario aluno = usuarios.get(nomeA);
         if (!disciplinas.get(disciplina).getAlunos().contains(aluno)) {
-            System.out.println("passei bitches");
 
             return true;
         } else {
@@ -318,8 +317,8 @@ public class SistemaMatricula {
     }
 
 
-    public Disciplina criarDisciplina(String nome, int maxAlunos, String nomeCurso) {
-        Disciplina atual = new Disciplina(maxAlunos, nome, nomeCurso);
+    public Disciplina criarDisciplina(String nome, String nomeCurso) {
+        Disciplina atual = new Disciplina(60, nome, nomeCurso);
         this.getDisciplinas().put(nome, atual);
         return atual;
     }

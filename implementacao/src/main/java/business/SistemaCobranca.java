@@ -32,11 +32,6 @@ public class SistemaCobranca {
          cobrancas.put(nomeAluno, c);
       }
 
-      for (Entry<String, Cobranca> entry : cobrancas.entrySet()) {
-         String key = entry.getKey();
-         String value = entry.getValue().toString();
-         System.out.println("Key: " + key + ", Value: " + value);
-      }
    }
    
 
