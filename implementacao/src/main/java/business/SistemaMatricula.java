@@ -254,17 +254,13 @@ public class SistemaMatricula {
                     String nomeAluno = str.nextToken(); 
                     aluno = (Aluno) usuarios.get(nomeAluno);  
                     alunos.add(aluno);
-                    System.out.println(usuarios.get(nomeAluno).getNome());
-                    System.out.println(alunos);
-                    System.out.println("teste");
                 }
                 
                 Disciplina disciplina = new Disciplina(maxAlunos, nomeDisciplina, nomeCurso, alunos);
                 disciplinas.put(nomeDisciplina, disciplina);
-
-                alunos.clear(); 
-
                 
+
+                alunos = new LinkedList<Aluno>();                
             }
             
             
