@@ -132,6 +132,17 @@ public class SistemaMatricula {
         return resultado.toString();
     }
 
+    public String visualizarDisciplinasGeral() {
+        String hashVazio = "Não existem disciplinas registradas \n";
+        StringBuilder resultado = new StringBuilder();
+        if (disciplinas.size() == 0) {
+            return hashVazio;
+        }
+        for (Map.Entry<String, Disciplina> atual : disciplinas.entrySet()) {
+            resultado.append(atual.toString());
+        }
+        return resultado.toString();
+    }
 
     //revisar repeticao
     public String visualizarDisciplinasLecionadas() {
