@@ -256,6 +256,7 @@ public class SistemaMatricula {
                     alunos.add(aluno);
                     System.out.println(usuarios.get(nomeAluno).getNome());
                     System.out.println(alunos);
+                    System.out.println("teste");
                 }
                 
                 Disciplina disciplina = new Disciplina(maxAlunos, nomeDisciplina, nomeCurso, alunos);
