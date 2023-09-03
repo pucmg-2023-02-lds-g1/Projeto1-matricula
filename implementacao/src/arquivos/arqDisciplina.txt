@@ -1,2 +1,2 @@
-teste;100;Curso legal;vagner;vagner;Aluno2;
+teste;100;Curso legal;vagner;Aluno2;
 Teste2;100;Curso legal;Aluno1;
