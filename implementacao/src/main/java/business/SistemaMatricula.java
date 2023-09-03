@@ -10,6 +10,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
+import java.util.Map.Entry;
 
 public class SistemaMatricula {
 
@@ -30,8 +31,8 @@ public class SistemaMatricula {
     }
 
     public SistemaMatricula(String nome) throws UsuarioInvalidoException {
-        carregarDisciplina();
         carregarUsuario();
+        carregarDisciplina();
         setNome(nome);
     }
 
@@ -249,16 +250,22 @@ public class SistemaMatricula {
                 String nomeDisciplina = str.nextToken();
                 int maxAlunos = Integer.parseInt(str.nextToken());
                 String nomeCurso = str.nextToken();
-                while(str.hasMoreTokens()){    
-                    aluno = (Aluno) usuarios.get(str.nextToken());  
+                while(str.hasMoreTokens()){   
+                    String nomeAluno = str.nextToken(); 
+                    aluno = (Aluno) usuarios.get(nomeAluno);  
                     alunos.add(aluno);
+                    System.out.println(usuarios.get(nomeAluno).getNome());
+                    System.out.println(alunos);
                 }
-
+                
                 Disciplina disciplina = new Disciplina(maxAlunos, nomeDisciplina, nomeCurso, alunos);
                 disciplinas.put(nomeDisciplina, disciplina);
 
                 alunos.clear(); 
+
+                
             }
+            
             
             reader.close();
         } catch (FileNotFoundException e) {
