@@ -139,7 +139,7 @@ public class SistemaMatricula {
             return hashVazio;
         }
         for (Map.Entry<String, Disciplina> atual : disciplinas.entrySet()) {
-            resultado.append(atual.toString());
+            resultado.append(atual.getValue().toString());
         }
         return resultado.toString();
     }
