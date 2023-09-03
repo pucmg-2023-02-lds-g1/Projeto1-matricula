@@ -1,7 +1,7 @@
-A;Aluno2;aluno123;
+A;2;2;
 P;lucas;monte;
 A;Aluno1;aluno123;
-S;Sheldon;123;
+S;1;1;
 A;ALunoLegal;ALunoLegal;
 P;Professor1;Professor123;
 A;vagner;000;
