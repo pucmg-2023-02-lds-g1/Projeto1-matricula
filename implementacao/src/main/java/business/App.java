@@ -68,7 +68,7 @@ public class App {
                     cadastroDisciplina(sysMat);
                     break;
                 case 4:
-                    System.out.println(sysMat.visualizarDisciplinasAluno());
+                    System.out.println(sysMat.visualizarDisciplinasGeral());
                     break;
                 case 5:
                     System.out.println(sysMat.visualizarUsuarios());
