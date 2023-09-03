@@ -261,36 +261,38 @@ public class App {
     }
 
     private static void matricularAluno(SistemaMatricula sysMat) {
-        boolean condicao = true;//, condicao2 = true;
+        //System.out.println(sysMat.filtrarDisciplina("Curso legal").getNome());
+        //System.out.println(sysMat.filtrarUsuario("vagner").getSenha());
+        //boolean condicao = true;//, condicao2 = true;
         String nomeAluno;
         String nomeDisciplina;
 
-        do {
+        //do {
             System.out.println("Digite o nome do aluno: ");
             nomeAluno = entrada.nextLine();
-            try {
-                condicao = sysMat.confereAluno(nomeAluno);
-            } catch (Exception E) {
-            }
-        } while (!condicao);
+            //try {
+               // condicao = sysMat.confereAluno(nomeAluno);
+            //} catch (Exception E) {
+            //}
+        //} while (!condicao);
 
-        System.out.println("Digite o numero de materias em que o aluno será matriculado: ");
-        int numMat = entrada.nextInt();
-        entrada.nextLine();
-        for (int i = 0; i != numMat; i++) {
-            do {
+        //System.out.println("Digite o numero de materias em que o aluno será matriculado: ");
+        //int numMat = entrada.nextInt();
+        
+        //for (int i = 0; i != numMat; i++) {
+            //do {
 
                 System.out.println("Digite o nome da disciplina: ");
                 nomeDisciplina = entrada.nextLine();
-                try {
-                    condicao = sysMat.confereDisciplina(nomeDisciplina);
+                //try {
+                    //condicao = sysMat.confereDisciplina(nomeDisciplina);
                     //condicao2 = sysMat.confereAlunoMatriculado(nomeAluno, nomeDisciplina);
-                } catch (Exception E) {
-                }
+                //} catch (Exception E) {
+                //}
 
-            } while (!condicao);
+            //} while (!condicao);
             sysMat.matricularDisciplina(nomeAluno, nomeDisciplina);
-        }
+        //}
 
     }
 
