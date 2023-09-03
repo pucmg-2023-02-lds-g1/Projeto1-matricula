@@ -55,6 +55,7 @@ public class App {
             System.out.println("7 - Desmatricular aluno");
             System.out.println("8 - Matricular professor para ensinar disciplina");
             System.out.println("9 - Mudar de conta");
+            System.out.println("10 - Gerar currículo");
             System.out.println("0 - Salvar dados");
             opcao = entrada.nextInt();
             entrada.nextLine();
@@ -89,6 +90,9 @@ public class App {
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
                     }
+                    break;
+                case 10:
+                    System.out.println(sysMat.gerarCurriculo());
                     break;
                 case 0:
                     sysMat.salvarDados();

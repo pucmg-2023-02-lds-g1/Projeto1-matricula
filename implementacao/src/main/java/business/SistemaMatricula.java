@@ -5,11 +5,15 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
+import java.util.stream.Collectors;
 
 public class SistemaMatricula {
 
@@ -419,5 +423,31 @@ public class SistemaMatricula {
         .stream()
         .filter(d -> d.getAlunos().contains(aluno))
         .count();
+    }
+
+    public String gerarCurriculo() {
+        StringBuilder resultado = new StringBuilder();
+        resultado.append("Currículo atual:\n");
+        int qtdAlunos, qtdProfessores, disciplinasAtivas, disciplinasCheias;
+        double mediaAlunos;
+        //Quantidade de disciplinas
+        disciplinasAtivas = disciplinas.values().stream().filter(d -> d.getAtivada()!=null).collect(Collectors.toList()).size();
+        resultado.append("Quantidade de disciplinas ativas: "+disciplinasAtivas+"\n");
+        disciplinasCheias = disciplinas.values().stream().filter(d -> d.getAtivada()==null).collect(Collectors.toList()).size();
+        resultado.append("Quantidade de disciplinas cheias: "+disciplinasCheias+"\n");
+        //Disciplina com mais alunos
+        Disciplina disciplina = Collections.max(disciplinas.values(), Comparator.comparing(d -> d.getAlunos().size()));
+        resultado.append("Disciplina com mais alunos: "+disciplina.getNome()+"\n");
+        //Quantidade de professores
+        qtdProfessores = usuarios.values().stream().filter(u -> u.getTipo()=="P").collect(Collectors.toList()).size();
+        resultado.append("Quantidade de professores cadastrados: "+qtdProfessores+"\n");
+        //Média de alunos por professor
+        mediaAlunos = (disciplinas.values().stream().mapToInt(d -> d.getAlunos().size()).sum()) / qtdProfessores;
+        resultado.append("Média de alunos por professor: "+mediaAlunos+"\n");
+        //Quantidade de alunos matriculados
+        qtdAlunos = usuarios.values().stream().filter(u -> u.getTipo()=="A").collect(Collectors.toList()).size();
+        resultado.append("Quantidade de alunos cadastrados: "+qtdAlunos+"\n\n");
+        
+        return resultado.toString();
     }
 }
