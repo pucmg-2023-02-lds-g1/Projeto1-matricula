@@ -26,10 +26,11 @@ public class Disciplina implements IObrigatorio, IAtivada,ISalvavel{
         this.nomeCurso = nomeCurso;
     }
 
-    public Disciplina(int maxAlunos, String nome, String nomeCurso, List<Aluno> Alunos) {
+    public Disciplina(int maxAlunos, String nome, String nomeCurso, List<Aluno> alunos) {
         this.maxAlunos = maxAlunos;
         this.nome = nome;
         this.nomeCurso = nomeCurso;
+        this.alunos = alunos;
     }
 
 
@@ -103,7 +104,7 @@ public class Disciplina implements IObrigatorio, IAtivada,ISalvavel{
 
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < alunos.size(); i++) {
-            sb.append(alunos.get(i));
+            sb.append(alunos.get(i).getNome());
             sb.append(";");
         }
         return sb.toString();
