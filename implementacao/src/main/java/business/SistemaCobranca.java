@@ -26,7 +26,7 @@ public class SistemaCobranca {
       if (cobrancas.containsKey(nomeAluno)){
          return cobrancas.get(nomeAluno).formataDados();
       }else{
-         throw new CobrancaInvalidaException();
+         return "Você não possui nenhuma cobrança";
       }
        
       
