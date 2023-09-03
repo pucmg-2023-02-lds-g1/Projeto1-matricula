@@ -5,7 +5,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -52,14 +51,10 @@ public class SistemaMatricula {
         }
     }
 
-    public void matricularDisciplina(String nomeUsuario, String nomeDisciplina) throws DisciplinaInvalidaException, UsuarioInvalidoException {
-        //System.out.println(nomeUsuario);
-        //System.out.println(nomeDisciplina);
+    public void matricularDisciplina(String nomeUsuario, String nomeDisciplina) throws DisciplinaCheiaException, UsuarioInvalidoException, DisciplinaInvalidaException {
+        
         Aluno aluno = (Aluno)filtrarUsuario(nomeUsuario);
-        //System.out.println(aluno);
-        //System.out.println("xxxxxxxxxxxxxxxx");
         Disciplina disciplina = filtrarDisciplina(nomeDisciplina);
-        //System.out.println(disciplina);
         disciplina.addAlunos(aluno);
         notificarSistemaDeCobranca(nomeUsuario);
     }

@@ -34,8 +34,18 @@ public class Disciplina implements IObrigatorio, IAtivada,ISalvavel{
     }
 
 
-    public void addAlunos(Aluno aluno){
-        alunos.add(aluno);  
+    public void addAlunos(Aluno aluno) throws DisciplinaCheiaException {
+        
+
+        if(alunos.size()<=getMaxAlunos()){
+            alunos.add(aluno);
+        } else {
+            throw new DisciplinaCheiaException();
+        } 
+
+        if(alunos.size()>3) {
+            setAtivada(ativada);
+        }
     }
 
     public void removeAlunos(Aluno aluno){
