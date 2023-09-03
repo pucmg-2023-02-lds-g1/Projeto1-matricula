@@ -79,7 +79,7 @@ public class Disciplina implements IObrigatorio, IAtivada,ISalvavel{
 
 
     public void setMaxAlunos(int maxAlunos) throws DisciplinaInvalidaException {
-        if(nome!=null) {
+        if(maxAlunos<=60) {
             this.maxAlunos = maxAlunos;
         } else {
             throw new DisciplinaInvalidaException();
