@@ -31,6 +31,7 @@ public class SistemaMatricula {
     }
 
     public SistemaMatricula(String nome) throws UsuarioInvalidoException {
+        carregarDisciplina();
         carregarUsuario();
         carregarDisciplina();
         carregarCobranca();
@@ -219,6 +220,7 @@ public class SistemaMatricula {
 
             BufferedReader reader = new BufferedReader(new FileReader(arqUsuario));
             String linha;
+            Disciplina disciplina;
 
             while ((linha = reader.readLine()) != null) {
                 StringTokenizer str = new StringTokenizer(linha, ";");
@@ -233,6 +235,14 @@ public class SistemaMatricula {
                 } else {
                     usuario = new Secretario(nome, senha);
                 }
+
+                while(str.hasMoreTokens()){   
+                    String disciplinaString = str.nextToken(); 
+                    disciplina = disciplinas.get(disciplinaString); 
+                    ((Professor) usuario).addDisciplina(disciplina);
+                    System.out.println(((Professor)usuario).getDisciplinasLecionadas());
+                }
+
 
                 usuarios.put(nome, usuario);
             }
@@ -352,6 +362,7 @@ public class SistemaMatricula {
     private void escreveArqCobranca() {
         escreveArquivo(financeiro.getCobrancas(), arqCobranca);
     }
+
 
     public void salvarDados() {
         escreveArqUsuario();
