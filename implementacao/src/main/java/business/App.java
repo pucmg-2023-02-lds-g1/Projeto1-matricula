@@ -238,7 +238,6 @@ public class App {
     private static void cadastroSecretario(SistemaMatricula sysMat) {
 
         try {
-            entrada.nextLine();
             System.out.println("Digite o nome: ");
             String nome = entrada.nextLine();
             System.out.println("Digite a senha: ");

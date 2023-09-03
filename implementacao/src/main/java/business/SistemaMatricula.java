@@ -240,7 +240,6 @@ public class SistemaMatricula {
                     String disciplinaString = str.nextToken(); 
                     disciplina = disciplinas.get(disciplinaString); 
                     ((Professor) usuario).addDisciplina(disciplina);
-                    System.out.println(((Professor)usuario).getDisciplinasLecionadas());
                 }
 
 
