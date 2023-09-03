@@ -35,6 +35,7 @@ public class SistemaMatricula {
     }
 
     public SistemaMatricula(String nome) throws UsuarioInvalidoException {
+        carregarDisciplina();
         carregarUsuario();
         carregarDisciplina();
         carregarCobranca();
@@ -51,7 +52,7 @@ public class SistemaMatricula {
         }
     }
 
-    public void matricularDisciplina(String nomeUsuario, String nomeDisciplina) {
+    public void matricularDisciplina(String nomeUsuario, String nomeDisciplina) throws DisciplinaInvalidaException, UsuarioInvalidoException {
         //System.out.println(nomeUsuario);
         //System.out.println(nomeDisciplina);
         Aluno aluno = (Aluno)filtrarUsuario(nomeUsuario);
@@ -63,7 +64,7 @@ public class SistemaMatricula {
         notificarSistemaDeCobranca(nomeUsuario);
     }
 
-    public void cancelarMatricula(String nomeUsuario, String nomeDisciplina) {
+    public void cancelarMatricula(String nomeUsuario, String nomeDisciplina) throws UsuarioInvalidoException {
         Aluno aluno = (Aluno) filtrarUsuario(nomeUsuario);
         disciplinas.get(nomeDisciplina).removeAlunos(aluno);
     }
@@ -93,12 +94,20 @@ public class SistemaMatricula {
         }
     }
 
-    public Usuario filtrarUsuario(String nomeDeUsuario) {
-        return usuarios.get(nomeDeUsuario);
+    public Usuario filtrarUsuario(String nomeDeUsuario) throws UsuarioInvalidoException {
+       if(usuarios.containsKey(nomeDeUsuario)){
+            return usuarios.get(nomeDeUsuario);
+        }else{
+            throw new UsuarioInvalidoException();
+        }
     }
 
-    public Disciplina filtrarDisciplina(String nomeDisciplina) {
-        return disciplinas.get(nomeDisciplina);
+    public Disciplina filtrarDisciplina(String nomeDisciplina) throws DisciplinaInvalidaException {
+        if(disciplinas.containsKey(nomeDisciplina)){
+            return disciplinas.get(nomeDisciplina);
+        }else{
+            throw new DisciplinaInvalidaException();
+        }
     }
 
     public void notificarSistemaDeCobranca(String nome) {
@@ -215,6 +224,7 @@ public class SistemaMatricula {
 
             BufferedReader reader = new BufferedReader(new FileReader(arqUsuario));
             String linha;
+            Disciplina disciplina;
 
             while ((linha = reader.readLine()) != null) {
                 StringTokenizer str = new StringTokenizer(linha, ";");
@@ -229,6 +239,13 @@ public class SistemaMatricula {
                 } else {
                     usuario = new Secretario(nome, senha);
                 }
+
+                while(str.hasMoreTokens()){   
+                    String disciplinaString = str.nextToken(); 
+                    disciplina = disciplinas.get(disciplinaString); 
+                    ((Professor) usuario).addDisciplina(disciplina);
+                }
+
 
                 usuarios.put(nome, usuario);
             }
@@ -349,6 +366,7 @@ public class SistemaMatricula {
         escreveArquivo(financeiro.getCobrancas(), arqCobranca);
     }
 
+
     public void salvarDados() {
         escreveArqUsuario();
         escreveArqDisciplina();
@@ -382,6 +400,11 @@ public class SistemaMatricula {
         return sb.toString();
     }
     
+    public void matricularProfessor(String nomeProfessor, String nomeDisciplina) throws DisciplinaInvalidaException, UsuarioInvalidoException{
+        Professor professor = (Professor)filtrarUsuario(nomeProfessor);
+        Disciplina disciplina = filtrarDisciplina(nomeDisciplina);
+        professor.addDisciplina(disciplina);
+    }
 
     public void setObrigatoria(Disciplina disciplina) {
 

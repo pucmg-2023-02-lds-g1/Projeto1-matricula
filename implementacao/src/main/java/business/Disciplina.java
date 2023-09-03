@@ -49,7 +49,7 @@ public class Disciplina implements IObrigatorio, IAtivada,ISalvavel{
 
 
     public void setAlunos(List<Aluno> alunos) {
-        alunos = alunos;
+        this.alunos = alunos;
     }
 
 
