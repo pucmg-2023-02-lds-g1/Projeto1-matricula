@@ -276,18 +276,17 @@ public class SistemaMatricula {
     private void carregarCobranca() {
         try {
 
-            BufferedReader reader = new BufferedReader(new FileReader(arqDisciplina));
+            BufferedReader reader = new BufferedReader(new FileReader(arqCobranca));
             String linha;
 
             while ((linha = reader.readLine()) != null) {
 
                 StringTokenizer str = new StringTokenizer(linha, ";");
-                String descCobranca = str.nextToken();
+                String desc = str.nextToken();
                 double preco = Double.parseDouble(str.nextToken());
-                String nomeAluno = str.nextToken();
 
-                Cobranca cobranca = new Cobranca(descCobranca, preco);
-                financeiro.addCobrancas(nomeAluno, cobranca);;
+                Cobranca cobranca = new Cobranca(desc, preco);
+                financeiro.addCobrancas(desc, cobranca);;
             }
             
             

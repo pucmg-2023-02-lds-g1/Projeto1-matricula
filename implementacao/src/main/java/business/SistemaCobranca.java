@@ -1,6 +1,7 @@
 package business;
 
 import java.util.*;
+import java.util.Map.Entry;
 
 public class SistemaCobranca {
 
@@ -11,7 +12,7 @@ public class SistemaCobranca {
       return this.cobrancas;
    }
 
-   public void addCobrancas(String nomeAluno, Cobranca cobranca){
+   public void addCobrancas(String nomeAluno,Cobranca cobranca){
       cobrancas.put(nomeAluno,cobranca);
    }
 
@@ -31,6 +32,11 @@ public class SistemaCobranca {
          cobrancas.put(nomeAluno, c);
       }
 
+      for (Entry<String, Cobranca> entry : cobrancas.entrySet()) {
+         String key = entry.getKey();
+         String value = entry.getValue().toString();
+         System.out.println("Key: " + key + ", Value: " + value);
+      }
    }
    
 
