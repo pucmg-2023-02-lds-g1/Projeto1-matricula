@@ -1,2 +1,5 @@
+;60;;
 teste;60;Curso legal;vagner;Aluno2;
+A;70;12;
 Teste2;60;Curso legal;Aluno1;Aluno2;
+TesteM;1;Engenharia;

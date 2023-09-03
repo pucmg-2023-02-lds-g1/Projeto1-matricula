@@ -196,14 +196,10 @@ public class App {
         System.out.println("Digite o nome da disciplina: ");
         String nomeDisciplina = entrada.nextLine();
 
-        System.out.println("Digite o maximo de alunos desse disciplina: ");
-        int maxAlunos = entrada.nextInt();
-
-        entrada.nextLine();
         System.out.println("Digite o nome do curso: ");
         String nomeCurso = entrada.nextLine();
 
-        Disciplina atual = sysMat.criarDisciplina(nomeDisciplina, maxAlunos, nomeCurso);
+        Disciplina atual = sysMat.criarDisciplina(nomeDisciplina, nomeCurso);
         System.out.println("Essa disicplina é obrigatoria?(S/N) ");
         String op = entrada.nextLine();
 
