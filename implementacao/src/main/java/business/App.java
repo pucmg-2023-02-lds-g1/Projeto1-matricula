@@ -54,6 +54,7 @@ public class App {
             System.out.println("6 - Matricular aluno");
             System.out.println("7 - Desmatricular aluno");
             System.out.println("8 - Mudar de conta");
+            System.out.println("9 - Gerar currículo");
             System.out.println("0 - Salvar dados");
             opcao = entrada.nextInt();
             entrada.nextLine();
@@ -85,6 +86,9 @@ public class App {
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
                     }
+                    break;
+                case 9:
+                    System.out.println(sysMat.gerarCurriculo());
                     break;
                 case 0:
                     sysMat.salvarDados();
@@ -218,7 +222,6 @@ public class App {
     private static void cadastroSecretario(SistemaMatricula sysMat) {
 
         try {
-            entrada.nextLine();
             System.out.println("Digite o nome: ");
             String nome = entrada.nextLine();
             System.out.println("Digite a senha: ");
