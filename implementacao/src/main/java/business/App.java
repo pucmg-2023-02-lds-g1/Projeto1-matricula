@@ -296,9 +296,11 @@ public class App {
             System.out.println("Digite o nome da disciplina: ");
             nomeDisciplina = entrada.nextLine();
 
-            sysMat.confereDisciplina(nomeDisciplina);
+            if(sysMat.confereDisciplina(nomeDisciplina)||sysMat.confereAlunoMatriculado(nomeAluno,nomeDisciplina)) {
+                sysMat.matricularDisciplina(nomeAluno, nomeDisciplina);
+            }
 
-            sysMat.matricularDisciplina(nomeAluno, nomeDisciplina);
+            
 
         } catch (DisciplinaInvalidaException e) {
             System.out.println(e.getMessage());
@@ -308,34 +310,23 @@ public class App {
     }
 
     private static void desmatricularAluno(SistemaMatricula sysMat) {
-        boolean condicao = true;// , condicao2 = true;
         String nomeAluno;
         String nomeDisciplina;
 
-        do {
-            System.out.println("Digite o nome do aluno: ");
-            nomeAluno = entrada.nextLine();
-            try {
-                condicao = sysMat.confereAluno(nomeAluno);
-            } catch (Exception E) {
-            }
-        } while (!condicao);
-
-        do {
+        System.out.println("Digite o nome do aluno: ");
+        nomeAluno = entrada.nextLine();
+        try {
+            sysMat.confereAluno(nomeAluno);
 
             System.out.println("Digite o nome da disciplina: ");
             nomeDisciplina = entrada.nextLine();
-            try {
-                condicao = sysMat.confereDisciplina(nomeDisciplina);
-                // condicao2 = sysMat.confereAlunoMatriculado(nomeAluno, nomeDisciplina);
-            } catch (Exception E) {
-            }
 
-        } while (!condicao);
+            sysMat.confereDisciplina(nomeDisciplina);
 
-        try {
+
             sysMat.cancelarMatricula(nomeAluno, nomeDisciplina);
-        } catch (UsuarioInvalidoException e) {
+
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
