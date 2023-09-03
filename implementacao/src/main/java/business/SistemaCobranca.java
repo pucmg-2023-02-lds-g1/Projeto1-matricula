@@ -6,6 +6,19 @@ public class SistemaCobranca {
 
    private HashMap<String, Cobranca> cobrancas = new HashMap<>();
 
+
+   public HashMap<String, Cobranca> getCobrancas(){
+      return this.cobrancas;
+   }
+
+   public void addCobrancas(String nomeAluno, Cobranca cobranca){
+      cobrancas.put(nomeAluno,cobranca);
+   }
+
+   public void setCobrancas(HashMap<String, Cobranca> cobrancas){
+      this.cobrancas = cobrancas;
+   }
+
    public void emitirCobranca(String nomeAluno, String desc, Double preco) {
 
       if (cobrancas.containsKey(nomeAluno)) {
